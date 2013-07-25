@@ -1,0 +1,74 @@
+%%%%%%% for mathematica
+\newcommand{\mathsym}[1]{{}}
+\newcommand{\unicode}[1]{{}}
+
+\newcounter{mathematicapage}
+%%%%%%%
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}} % shorter scientific notation
+\newcommand{\unit}[1]{\ensuremath{\;\mathrm{#1}}}   % units formatting
+
+
+\newcommand{\incltbl}[4][h]{  %[pos]{file}{label}{caption}
+\begin{table}[#1]
+	\begin{center}
+		\input{#2}
+	\end{center}
+	\caption{#4}
+	\label{tab:#3}
+\end{table}
+}
+\newcommand{\incltblbox}[5][b]{  %[pos]{file}{label}{caption}{width}
+\parbox[#1]{#5}{
+	\begin{center}
+		\input{#2}
+	\end{center}
+	\captionof{table}{#4}
+	\label{tab:#3}
+}
+}
+\newcommand{\inclgr}[5][h]{ %[pos]{file}{label}{caption}{width}
+\begin{figure}[#1]
+	\centering
+	\includegraphics[scale=#5]{#2}
+	\caption{#4}
+	\label{fig:#3}
+\end{figure}
+}
+\newcommand{\inclempty}[4][h]{ %[pos]{label}{caption}{height}
+\begin{figure}[#1]
+	\centering
+	\vspace{#4}
+	\caption{#3}
+	\label{fig:#2}
+\end{figure}
+}
+\newcommand{\inclpic}[5][h]{ %[pos]{file}{label}{caption}{width}
+\begin{figure}[#1]
+	\centering
+	\ifpdf
+		\includegraphics[width=#5]{#2}
+	\else
+		\begin{minipage}{#5}\hfill\vspace{5cm}\end{minipage}
+	\fi
+	\caption{#4}
+	\label{fig:#3}
+\end{figure}
+}
+
+\newcommand{\fixme}{\begin{Huge}\textbf{FIX ME !!!}\end{Huge}}
+
+
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\uvect}[1]{\boldsymbol{u}_{\boldsymbol{#1}}}
+\newcommand{\ux}{\uvect{x}}
+\newcommand{\uy}{\uvect{y}}
+\newcommand{\uz}{\uvect{z}}
+\newcommand{\ur}{\uvect{r}}
+\newcommand{\uth}{\uvect{\theta}}
+\newcommand{\uph}{\uvect{\phi}}
+
+\newcommand{\ard}{\mathcal{A}} %script A
+
+\newcommand{\dd}{\mathrm{d}} %differential d
+\newcommand{\ds}{\;}         %space to use on the left or right of {\dd something} 
+\newcommand{\noyau}[3]{\prescript{#2}{#3}{\mathrm{#1}}} 

@@ -1,0 +1,10 @@
+*~
+*.log
+*.dvi
+*.aux
+*.bbl
+*.toc
+*.out
+main.pdf
+main.synctex.gz
+Figures/

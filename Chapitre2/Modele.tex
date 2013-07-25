@@ -1,0 +1,87 @@
+\chapter{Construction du modèle}
+
+On cherche ici à construire un modèle décrivant la dynamique d'échange au sein d'une fourmillière; dynamique présentée au chapitre précédent. Ce modèle se base principalement sur des paramètres physiques mesurable et des lois statistiques de comportement individuel. \\
+
+Le manque d'études expérimentales sur le comportement des fourmis au cours des échanges nous oblige à partir à l'aveugle. Nous choisissons de mettre de côté notre intuition et de généraliser notre modèle à l'ensemble des comportements possibles.\\
+
+Néanmoins, la démarche d'utilisation du modèle pourrait permettre des considérations plus précises une fois de nouvelles données expérimentales obtenues. Une proposition de protocole expérimental sera d'ailleurs donnée dans la conclusion.
+
+
+\section{Hypothèses et justifications}
+\textit{Dans cette section nous dressons la liste des hypothèses faites lors de la construction du modèle, aussi bien à l'échelle de la population qu'à celle de l'individu. Nous motivons le choix des hypothèses soit sur base d'arguments biologiques, soit dans un but de simplification afin d'éviter une analyse titanesque de l'espace des paramètres.}\\
+
+Pour rappel, la dynamique d'échange remplit deux fonctions au sein du nid: acheminer la nourriture récoltée chez les individus stockeurs et redistribuer cette nourriture stockée dans la population. \\
+
+Cette dynamique est relevante sur un temps caractéristique de l'ordre de la minute ou de l'heure, nettement inférieur à l'espérance de vie d'une ouvrière\footnote{Une ouvrière pouvant vivre plusieurs années. (ref \fixme)}; on peut donc négliger l'évolution démographique de la colonnie et considérer \textbf{un nombre d'individus $N$ constant}.\\
+
+De même, la variation des stocks de nourriture par consommation de la population n'est conséquente que sur des temps de l'ordre de la journée, et comme nous considérons la dynamique d'échange entre deux arrivages de nourriture, on peut négliger la consommation ainsi que l'arrivée de nourriture et supposer \textbf{une quantité de nourriture $Q$ invariante} répartie dans la colonnie.\\
+
+
+A l'échelle de l'individu divers paramètres peuvent intervenir, certains sont intrinsèques (volume de nourriture transporté, âge, capacité maximale de nourriture transportée,...) d'autres dépendent du comportement de la fourmis (vitesse de déplacement, rôle au sein de la fourmillière,...). Nous choisissons de ne considérer que le volume de nourriture transportée et la capacité maximale de transport, les autres paramètres seront soient négligés, soient affectés d'une valeur moyenne.\\
+
+Pour prendre une décision, une fourmis ne dispose donc que de 2 informations: son stock interne et sa capacité de stock. Dès lors, nous négligeons la qualité de la nourriture\footnote{Cette hypothèse est discutable (ref? exemple de gestions différentes selon la nourriture. Aurélie?) mais suffisante pour décrire la dynamique autour d'une certaine denrée. Par exemple: la gestion du sucre au sein de la colonie.} et les caractéristiques des individus avec lesquels elle interagit. \\
+
+
+
+
+\section{La distribution de population dans l'espace des charges}
+On cherche à décrire la répartition des stocks de nourriture au sein de la colonnie.\\
+
+On considère une population constante de $N$ fourmis, partageant un stock de nourriture $Q$ invariant. Chaque individu transporte une certaine quantité de nourriture  et va fréquement en échanger avec ses condisciples. \footnote{Les processus biologiques d'échanges seront présentés au début de la section suivante} \\
+
+Dans un premier temps nous considérons chaque individu morphologiquement identique, bien qu'il sera intéressant par la suite de considérer une distribution des paramètres sur la population (en particulier, la capacité de transport). Les individus ne peuvent alors être différenciés que par la charge qu'ils transportent.\\
+
+L'unité de charge transportée correspond à une unité de volume, chaque fourmi pouvant transporter un volume $V\in[0,V_{max}]$ où $V_{max}$ est alors le volume de son jabot social. On considère généralement la charge $l=\frac{V}{V_{max}}$, dès lors $l\in[0,1]$.\\
+
+Nous choisissons de considérer une densité de population par unité de charge qui varie avec le temps: $X(l,t)$.
+La population totale et la charge totale de la colonie vallent alors respectivement:
+
+\begin{equation}
+N = X_{tot}(t) = \int^1_0X(l,t) dl
+\label{Xtot}
+\end{equation}
+
+\begin{equation}
+Q = Q_{tot}(t) = V_{max} \int^1_0 l.X(l,t) dl
+\label{Qtot}
+\end{equation}
+
+
+Dès lors, la conservation du nombre d'individus et de la charge totale donne les équations suivantes:
+
+\begin{equation}
+\frac{d}{d t} (X_{tot}(t)) = 0 = \frac{d}{dt}\int^1_0 X(l,t).dl
+\label{ConservationXtot}
+\end{equation}
+
+\begin{equation}
+\frac{d}{d t} (Q_{tot}(t)) = 0 = V_{max} \frac{d}{dt}\int^1_0 l.X(l,t).dl
+\label{ConservationQtot}
+\end{equation}
+
+\section{Mecanisme d'échange}
+Trophallaxie
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{Figures/trophallaxie.png}
+\caption{Processus de trophallaxie. De la nourriture prédigérée est stockée dans un second estomac appelé le jabot social, afin de pouvoir être régurgitée plus tard à un condisciple. Source: myrmecos.net}
+\label{AntiLin2550}
+\end{figure}
+
+Slide 6 de la présentation\\
+
+La prise de décision... $P_R$, $P_D$
+
+\section{Equation maitresse}
+
+\begin{itemize}
+\item Discrétisation de l'espace des charges
+\item Taux de transition $W(i|j)$
+\item Equation maitresse
+\end{itemize}
+
+\section{Choix des lois d'échanges}
+
+Définitions des 4 $P_R$, $P_D$ + motivations
+
