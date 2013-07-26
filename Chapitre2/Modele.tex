@@ -1,14 +1,14 @@
 \chapter{Construction du modèle}
 
-On cherche ici à construire un modèle décrivant la dynamique d'échange au sein d'une fourmillière; dynamique présentée au chapitre précédent. Ce modèle se base principalement sur des paramètres physiques mesurable et des lois statistiques de comportement individuel. \\
+On cherche ici à construire un modèle décrivant la dynamique d'échange au sein d'une fourmillière; dynamique présentée au chapitre précédent. Ce modèle se base principalement sur des paramètres physiques mesurables et des lois statistiques de comportement individuel. \\
 
 Le manque d'études expérimentales sur le comportement des fourmis au cours des échanges nous oblige à partir à l'aveugle. Nous choisissons de mettre de côté notre intuition et de généraliser notre modèle à l'ensemble des comportements possibles.\\
 
-Néanmoins, la démarche d'utilisation du modèle pourrait permettre des considérations plus précises une fois de nouvelles données expérimentales obtenues. Une proposition de protocole expérimental sera d'ailleurs donnée dans la conclusion.
+Néanmoins, la démarche d'utilisation du modèle pourrait permettre des considérations plus précises une fois de nouvelles données expérimentales obtenues. Une proposition d'un nouveau protocole expérimental sera d'ailleurs donnée dans la conclusion.
 
 
 \section{Hypothèses et justifications}
-\textit{Dans cette section nous dressons la liste des hypothèses faites lors de la construction du modèle, aussi bien à l'échelle de la population qu'à celle de l'individu. Nous motivons le choix des hypothèses soit sur base d'arguments biologiques, soit dans un but de simplification afin d'éviter une analyse titanesque de l'espace des paramètres.}\\
+\textit{Nous dressons ici la liste des hypothèses faites lors de la construction du modèle, aussi bien à l'échelle de la population qu'à celle de l'individu. Nous motivons le choix des hypothèses soit sur base d'arguments biologiques, soit dans un but de simplification afin d'éviter une analyse démesurée de l'espace des paramètres.}\\
 
 Pour rappel, la dynamique d'échange remplit deux fonctions au sein du nid: acheminer la nourriture récoltée chez les individus stockeurs et redistribuer cette nourriture stockée dans la population. \\
 
@@ -19,15 +19,15 @@ De même, la variation des stocks de nourriture par consommation de la populatio
 
 A l'échelle de l'individu divers paramètres peuvent intervenir, certains sont intrinsèques (volume de nourriture transporté, âge, capacité maximale de nourriture transportée,...) d'autres dépendent du comportement de la fourmis (vitesse de déplacement, rôle au sein de la fourmillière,...). Nous choisissons de ne considérer que le volume de nourriture transportée et la capacité maximale de transport, les autres paramètres seront soient négligés, soient affectés d'une valeur moyenne.\\
 
-Pour prendre une décision, une fourmis ne dispose donc que de 2 informations: son stock interne et sa capacité de stock. Dès lors, nous négligeons la qualité de la nourriture\footnote{Cette hypothèse est discutable (ref? exemple de gestions différentes selon la nourriture. Aurélie?) mais suffisante pour décrire la dynamique autour d'une certaine denrée. Par exemple: la gestion du sucre au sein de la colonie.} et les caractéristiques des individus avec lesquels elle interagit. \\
+Pour prendre une décision, une fourmis ne dispose donc que de 2 informations: son stock interne et sa capacité de stock. Dès lors, nous négligeons l'impacte de la qualité de la nourriture\footnote{Cette hypothèse est contestable (ref? exemple de gestions différentes selon la nourriture. Aurélie?) mais suffisante pour décrire la dynamique autour d'une certaine denrée. Par exemple: la gestion du sucre au sein de la colonie.} et les caractéristiques des individus avec lesquels elle interagit. \\
 
 
 
 
 \section{La distribution de population dans l'espace des charges}
-On cherche à décrire la répartition des stocks de nourriture au sein de la colonnie.\\
+\textit{On introduit ici les grandeurs nécessaires pour décrire la répartition des stocks de nourriture au sein de la colonnie.}\\
 
-On considère une population constante de $N$ fourmis, partageant un stock de nourriture $Q$ invariant. Chaque individu transporte une certaine quantité de nourriture  et va fréquement en échanger avec ses condisciples. \footnote{Les processus biologiques d'échanges seront présentés au début de la section suivante} \\
+Nous considérons une population constante de $N$ fourmis, partageant un stock de nourriture $Q$ invariant. Chaque individu transporte une certaine quantité de nourriture  et va fréquement en échanger avec ses condisciples. \footnote{Les processus biologiques d'échanges seront présentés au début de la section suivante} \\
 
 Dans un premier temps nous considérons chaque individu morphologiquement identique, bien qu'il sera intéressant par la suite de considérer une distribution des paramètres sur la population (en particulier, la capacité de transport). Les individus ne peuvent alors être différenciés que par la charge qu'ils transportent.\\
 
@@ -60,20 +60,80 @@ Dès lors, la conservation du nombre d'individus et de la charge totale donne le
 \end{equation}
 
 \section{Mecanisme d'échange}
-Trophallaxie
+
+\textit{On s'intéresse ici aux échanges de charge au cours d'une interaction entre 2 individus.}\\
+
+Lors d'une interaction entre 2 individus A et B de charge respective $l_A$ et $l_B$, 3 événements sont possibles: A donne à B ($A \rightarrow B$), B donne à A ($B \rightarrow A$), rien ne se passe.\\
+
+On a supposé que chaque individu ne possède aucune information sur la charge de son homologue, dès lors chacun choisira de recevoir ou de donner de la nourriture sur base de sa propre charge. On introduit donc les probabilités $P_R(l)$ et $P_D(l)$ d'être receveur ou donneur au cours d'un échange.\\
+
+
+Ainsi l'évènement $A \rightarrow B$ se réalisera avec une probabilité:
+
+\begin{equation}
+P_{A \rightarrow B} = P_R(l_B) . P_D(l_A)
+\label{ProbaAdonneB}
+\end{equation}
+
+de même:
+
+\begin{equation}
+P_{B \rightarrow A} = P_R(l_A) . P_D(l_B)
+\label{ProbaBdonneA}
+\end{equation}
+
+et 
+
+\begin{equation}
+\begin{aligned}
+P_{\text{rien ne se passe}} &= 1- P_{A \rightarrow B} - P_{B \rightarrow A}\\
+&= P_R(l_A) . P_R(l_B) + P_D(l_A) . P_D(l_B)
+\end{aligned}
+\label{ProbaRien}
+\end{equation}
+
+Le dernier terme de l'équation (\ref{ProbaRien}) exprime la probabilité que les 2 individus soient tous les 2 receveurs ou tous les 2 donneurs, auxquels cas aucun échange n'a lieu.\\
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.4]{Figures/trophallaxie.png}
-\caption{Processus de trophallaxie. De la nourriture prédigérée est stockée dans un second estomac appelé le jabot social, afin de pouvoir être régurgitée plus tard à un condisciple. Source: myrmecos.net}
-\label{AntiLin2550}
+\includegraphics[scale=0.7]{Figures/Modele/prise_de_decision.pdf}
+\caption{Processus d'échange. Les individus se déplacent au sein du nid, à chaque rencontre ils choisissent d'être receveur ou donneur. Si leur choix sont compatibles (càd si l'un est donneur et l'autre receveur) l'échange à lieu, sinon le couple se sépare.}
+\label{trophallaxie}
 \end{figure}
 
-Slide 6 de la présentation\\
+En obligeant chaque individu en interaction à choisir entre l'état receveur ou l'état donneur, on vérifie
 
-La prise de décision... $P_R$, $P_D$
+\begin{equation}
+P_R(l)+P_D(l) = 1
+\label{PRPD1}
+\end{equation}
+pour toutes charges $l\in[0,1]$.\\
+
+La connaissance explicite de ces 2 fonctions nous permettrait de caractériser avec précision la dynamique d'échange, malheureusement l'absence de résultats expérimentaux nous oblige à partir à l'aveugle. Les seules informations indéniables que nous avons sont les conditions aux bords:
+
+\begin{equation}
+\left \{
+\begin{aligned}
+P_R(0)&=1 \\
+P_R(1)&=0 \\
+P_D(0)&=0 \\
+P_D(1)&=1
+\end{aligned}
+\right.
+\label{ConditionsBordsProbabilite}
+\end{equation}
+
+En effet, un individu chargé au maximum ne peut être que donneur et inversément, un individu vide ne peut être que receveur.
+
 
 \section{Equation maitresse}
+\textit{On établit ici l'équation maîtresse de la distribution de population dans l'espace des charges pour un modèle discret.}\\
+
+Nous allons commencer par proposer un modèle discret dans l'espace des charges et dans le temps décrivant la dynamique d'échange. Le chapitre 5 sera entièrement consacré au passage au continu de ce modèle discret.\\
+
+En discrétisant, toute charge devient un multiple d'une charge élémentaire $\Delta l$, l'ensemble des états occupables par une fourmis dans l'espace des charges est donné par $i*\Delta l$ où $i$ est un entier qui varie entre $0$ et $n$, $n$ vérifiant $n.\Delta l = 1$.\\
+
+Notre modèle décrit donc la dynamique dans l'espace des charges générée par des échanges de quantité $\Delta l$ entre les individus.
 
 \begin{itemize}
 \item Discrétisation de l'espace des charges
