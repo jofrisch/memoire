@@ -1,6 +1,6 @@
 \chapter{Construction du modèle}
 
-On cherche ici à construire un modèle décrivant la dynamique d'échange au sein d'une fourmillière; dynamique présentée au chapitre précédent. Ce modèle se base principalement sur des paramètres physiques mesurables et des lois statistiques de comportement individuel. \\
+On cherche ici à construire un modèle décrivant la dynamique d'échange au sein d'une fourmilière, dont les enjeux biologiques ont été présentés au chapitre précédent. Ce modèle se base principalement sur des paramètres physiques mesurables et des lois statistiques de comportement individuel. \\
 
 Le manque d'études expérimentales sur le comportement des fourmis au cours des échanges nous oblige à partir à l'aveugle. Nous choisissons de mettre de côté notre intuition et de généraliser notre modèle à l'ensemble des comportements possibles.\\
 
@@ -17,25 +17,27 @@ Cette dynamique est relevante sur un temps caractéristique de l'ordre de la min
 De même, la variation des stocks de nourriture par consommation de la population n'est conséquente que sur des temps de l'ordre de la journée, et comme nous considérons la dynamique d'échange entre deux arrivages de nourriture, on peut négliger la consommation ainsi que l'arrivée de nourriture et supposer \textbf{une quantité de nourriture $Q$ invariante} répartie dans la colonie.\\
 
 
-A l'échelle de l'individu divers paramètres peuvent intervenir, certains sont intrinsèques (volume de nourriture transporté, âge, capacité maximale de nourriture transportée,...) d'autres dépendent du comportement de la fourmi (vitesse de déplacement, rôle au sein de la fourmillière,...). Nous choisissons de ne considérer que le volume de nourriture transportée et la capacité maximale de transport, les autres paramètres seront soient négligés, soient affectés d'une valeur moyenne.\\
+A l'échelle de l'individu divers paramètres peuvent intervenir, certains sont intrinsèques (volume de nourriture transporté, âge, taille, capacité maximale de nourriture transportée,...) d'autres dépendent du comportement de la fourmi (vitesse de déplacement, rôle au sein de la fourmilière,...). Nous choisissons de ne considérer que le volume de nourriture transportée et la capacité maximale de transport, les autres paramètres seront soit négligés, soit affectés d'une valeur moyenne.\\
 
-Pour prendre une décision, une fourmi ne dispose donc que de 2 informations: son stock interne et sa capacité de stock. Dès lors, nous négligeons l'impacte de la qualité de la nourriture\footnote{Cette hypothèse est contestable (ref? exemple de gestions différentes selon la nourriture. Aurélie?) mais suffisante pour décrire la dynamique autour d'une certaine denrée. Par exemple: la gestion du sucre au sein de la colonie.} et les caractéristiques des individus avec lesquels elle interagit. \\
+Nous négligeons l'impacte de la qualité de la nourriture\footnote{Cette hypothèse est contestable (ref? exemple de gestions différentes selon la nourriture. Aurélie?) mais suffisante pour décrire la dynamique autour d'une certaine denrée. Par exemple: la gestion du sucre au sein de la colonie.} et supposons qu'une fourmi n'a aucune information sur les caractéristiques des individus avec lesquels elle interagit. Pour prendre une décision, une fourmi ne dispose donc que de 2 informations: son stock interne et sa capacité de stockage.\\
 
-Enfin, ce travail ne considère pas de composante spatiale, c'est à dire que les individus pourront interagir indépendamment de leur position. Nous discuterons de l'intérêt d'implémenter une telle dynamique dans les perspectives du dernier chapitre.
+Enfin, ce travail ne considère pas de composante spatiale, c'est à dire que les individus pourront interagir indépendamment de leur position. Nous discuterons de l'intérêt d'implémenter une telle dynamique dans les perspectives de ce travail présentées au dernier chapitre.
 
 
 \section{La distribution de population dans l'espace des charges}
+
 \textit{On introduit ici les grandeurs nécessaires pour décrire la répartition des stocks de nourriture au sein de la colonie.}\\
 
-Nous considérons une population constante de $N$ fourmi, partageant un stock de nourriture $Q$ (exprimé en unité de volume) invariant. Chaque individu transporte une certaine quantité de nourriture  et va fréquement en échanger avec ses condisciples. \footnote{Les processus biologiques entournant la dynamique d'échange ont été présentés dans l'introduction.} \\
+Nous considérons une population constante de $N$ fourmis, partageant un stock de nourriture $Q$ (exprimé en unité de volume) invariant. Chaque individu transporte une certaine quantité de nourriture  et va fréquemment en échanger avec ses condisciples. \footnote{Les processus biologiques entourant la dynamique d'échange ont été présentés dans l'introduction.} \\
 
 Dans un premier temps nous considérons chaque individu morphologiquement identique, bien qu'il sera intéressant par la suite de considérer une distribution des paramètres sur la population (en particulier, la capacité de transport). Les individus ne peuvent alors être différenciés que par la charge qu'ils transportent.\\
 
 L'unité de charge transportée correspond à une unité de volume, chaque fourmi pouvant transporter un volume $V\in[0,V_{max}]$ où $V_{max}$ est alors le volume de son jabot social. On considère généralement la charge $l=\frac{V}{V_{max}}$, dès lors $l\in[0,1]$.\\
 
-Nous choisissons de considérer une distribution de population par unité de charge qui varie avec le temps: $X(l,t)$, qui représente donc le nombre d'individus transportant une charge $l$ au temps $t$.\\
+Nous choisissons de considérer une distribution de population par unité de charge qui varie avec le temps: $X(l,t)$.\\
+$X(l,t)dl$ représente donc le nombre d'individus transportant une charge comprise dans l'interval $[l,l+dl]$ au temps $t$.\\
 
-La population totale et la charge totale de la colonie vallent alors respectivement:
+La population totale et la charge totale de la colonie valent alors respectivement:
 
 \begin{equation}
 N = X_{tot}(t) = \int^1_0X(l,t) dl
@@ -69,7 +71,7 @@ Lors d'une interaction entre 2 individus A et B de charge respective $l_A$ et $l
 On a supposé que chaque individu ne possède aucune information sur la charge de son homologue, dès lors chacun choisira de recevoir ou de donner de la nourriture sur base de sa propre charge. On introduit donc les probabilités $P_R(l)$ et $P_D(l)$ d'être receveur ou donneur au cours d'un échange.\\
 
 
-Ainsi l'évènement $A \rightarrow B$ se réalisera si A est donneur et B receveur, soit avec une probabilité:
+Ainsi l’événement $A \rightarrow B$ se réalisera si A est donneur et B receveur, soit avec une probabilité:
 
 \begin{equation}
 P_{A \rightarrow B} = P_R(l_B) . P_D(l_A)
@@ -99,7 +101,7 @@ Le dernier terme de l'équation (\ref{ProbaRien}) exprime la probabilité que le
 \centering
 \includegraphics[scale=0.7]{Figures/Modele/prise_de_decision.pdf}
 \caption{Processus d'échange. Les individus se déplacent au sein du nid, à chaque rencontre ils choisissent d'être receveur ou donneur. Si leur choix sont compatibles (càd si l'un est donneur et l'autre receveur) l'échange à lieu, sinon le couple se sépare.}
-\label{trophallaxie}
+\label{echanges}
 \end{figure}
 
 En obligeant chaque individu en interaction à choisir entre l'état receveur ou l'état donneur, on vérifie
@@ -124,126 +126,23 @@ P_D(1)&=1
 \label{ConditionsBordsProbabilite}
 \end{equation}
 
-En effet, un individu chargé au maximum ne peut être que donneur et inversément, un individu vide ne peut être que receveur.
-
-
-\section{Equation maitresse}
-\textit{On établit ici l'équation maîtresse de la distribution de population dans l'espace des charges pour un modèle discret.}\\
-
-Nous allons commencer par proposer un modèle discret dans l'espace des charges et dans le temps décrivant la dynamique d'échange. Le chapitre 5 sera entièrement consacré au passage au continu de ce modèle discret.\\
-
-\subsection{Discrétisation}
-En imposant une discrétisation de la charge, toute quantité devient un multiple d'une charge élémentaire $\Delta l$, l'ensemble des états occupables par une fourmi dans l'espace des charges est donc donné par $i*\Delta l$ où $i$ est un entier qui varie entre $0$ et $n$, $n$ vérifiant $n.\Delta l = 1$. Le pas de temps $\Delta t$
-Par la suite, nous noterons les états par leur indice; une fourmi dite dans l'état $j$ correspond à une fourmi transportant une quantité $j* \Delta l$.\\
-
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.7]{Figures/Modele/discretisation.pdf}
-\caption{Discrétisation de l'espace des charges. Chaque état occupable est caractérisé par un indice $i$ allant de $0$ à $n$.}
-\label{discretisation}
-\end{figure}
-
-Le modèle présenté ici décrit la dynamique dans l'espace des charges générée par des échanges d'une goutelette $\Delta l$ entre les individus. La grandeur considérée sera donc $X(i,t)$: le nombre d'individus dans l'état $i$ au temps $t$.\\
-
-\subsection{Taux de transition}
-Suite à une interaction,
-\footnote{Attention à l'ambiguïté entre les termes "interaction" et "échange". On parle d'interaction quand 2 individus se rencontrent et choisissent ou non d'échanger de la nourriture. On parle d'échange s'ils ont choisit d'échanger.}
-une fourmi dans l'état $j$ occupera donc l'état:
-\begin{itemize}
-\item[$\bullet$] $j-1$, si elle a donné
-\item[$\bullet$] $j+1$, si elle a reçu
-\item[$\bullet$] $j$, s'il n'y a pas eu d'échange.
-\end{itemize}
-Les autres états étant inaccessible en un seul échange.\\
-
-Seul les transitions entre états voisins sont donc possibles au cours d'une interaction. On note $W(i|j,t)$ la probabilité qu'un individu dans l'état $j$ au temps $t$ atteigne l'état $i$ suite à une interaction, on trouve alors:
-
-
-\begin{equation}
-\begin{aligned}
-W(i|j,t) = \delta_{j,i+1} W(i|i+1,t) + \delta_{j,i-1} W(i|i-1,t) + \delta_{i,j} W(i|i,t)\\
-\label{Wij}
-\end{aligned}
-\end{equation}
-
-
-Le premier terme du membre de droite donne la probabilité qu'un individu dans l'état $i+1$ se décharge d'une unité au cours de l'interaction. Soit la probabilité $P_D(i+1)$ que l'individu soit donneur multipliée par la probabilité qu'il intéragisse avec un receveur: $\Sigma_R(t) = \sum_j X(j,t) P_R(j)$.\\
-De même, le second terme est la probabilité $P_R(i+1)$ que l'individu soit receveur multipliée par la probabilité qu'il intéragisse avec un donneur: $\Sigma_D(t) = \sum_j X(j,t) P_D(j)$.\\
-Le troisième terme est la probabilité que l'individu n'échange pas: $W(i|i,t) = 1 - W(i-1|i,t)- W(i+1|i,t)$\\
-
-
-En résumé:
-\begin{equation}
-\begin{aligned}
-&W(i|i+1,t)= P_D(i+1) \Sigma_R(t)\\
-&W(i|i-1,t)= P_R(i-1) \Sigma_D(t)\\
-&W(i|i,t) = 1- W(i-1|i,t)- W(i+1|i,t)\\
-\label{TransitionVoisins}
-\end{aligned}
-\end{equation}
-où
-\begin{equation}
-\begin{aligned}
-\Sigma_R	(t)	&= \sum_j P_R(j) X(j,t)\\
-\Sigma_D(t) 	&= \sum_j P_D(j) X(j,t)\\
-\label{SigmaRD}
-\end{aligned}
-\end{equation}
+En effet, un individu chargé au maximum ne peut être que donneur et inversement, un individu vide ne peut être que receveur.
 
 
 
-\subsection{Equation maitresse}
-
-La connaissance des taux de transitions entre états (équation \ref{Wij}) nous permet d'établir l'équation maitresse pour $X(i,t)$. La forme la plus générale \footnote{ref \fixme} de l'équation maitresse d'une quantité définie sur un espace discret est donnée par:
-
-\begin{equation}
-\begin{aligned}
-\dot{X}(i,t)= \sum_{j\neq i} W(i|j,t)X(j,t)-W(j|i,t)X(i,t)
-\label{MasterGeneral}
-\end{aligned}
-\end{equation}
-
-d'où
-
-\begin{equation}
-\begin{aligned}
-\dot{X}(i,t)&= W(i|i+1) X(i+1,t) + W(i|i-1) X(i-1,t)\\
-					&-W(i-1|i) X(i,t) -W(i+1|i) X(i,t)\\
-		    &= P_D(i+1) \Sigma_R(t) X(i+1,t) + P_R(i-1) \Sigma_D(t) X(i-1,t)\\
-					&-P_D(i) \Sigma_R(t) X(i,t) -P_R(i) \Sigma_D(t) X(i,t)\\
-\label{Master}
-\end{aligned}
-\end{equation}
-
-On fera attention aux bords:\\
-\begin{equation}
-\begin{aligned}
-\dot{X}(0,t) 	&= W(0|1) X(1,t) - W(1|0) X(0,t)\\
-				&= P_D(1) \Sigma_R(t) X(1,t) - P_R(0) \Sigma_D(t) X(0,t)
-\label{bord0}
-\end{aligned}
-\end{equation}
- et 
-\begin{equation}
-\begin{aligned}
-\dot{X}(N,t) 	&= W(N|N-1) X(N-1,t) - W(N-1|N) X(N,t)\\
-				&= P_R(N-1) \Sigma_D(t) X(N-1,t)- P_D(N) \Sigma_R(t) X(N,t)\\
-\label{bordN}
-\end{aligned}
-\end{equation}
 
 
 
-\section{Choix des lois d'échanges}
+\section{Choix des lois d'échange}
 
-On comprend que la dynamique de la distribution de population est dictée par la valeur des fonctions $P_R$ et $P_D$. Nous avons jusqu'ici considéré ces lois de manière générale, c'est d'ailleurs l'intérêt du travail de construire un modèle valable pour toute loi de comportement individuel. Ceci afin d'étudier l'influence de ces comportements sur la distribution de nourriture dans la colonie.\\
+On comprend que la dynamique de la distribution de population est dictée par la valeur des fonctions $P_R$ et $P_D$. Nous avons jusqu'ici considéré ces lois de manière générale, c'est d'ailleurs l'intérêt du travail de construire un modèle valable pour toute loi de comportement individuel, ceci afin d'étudier l'influence de ces comportements sur la distribution de nourriture dans la colonie.\\
 
-Malheureusement il est impossible en pratique d'étudier toutes les lois d'échange imaginables, nous devons donc faire des choix. Dans cette étude du modèle nous choisissons de nous intéresser à 4 lois bio-inspirées représentant des comportements biologiques fondamentalement différents. Ceci dans l'espoir de mettre en évidence des liens entre le caractère des lois et leur conséquence sur la dynamique d'échange (par ex. apparition de sous populations riches et pauvres, concentration de la population autour d'une certaine charge,...). Dans les perspectives du projet, présentées au dernier chapitre, nous discuterons de la possibilité de paramétriser ces lois et de l'intérêt d'étudier la dynamique du système en fonction des paramètres introduits.\\
+Malheureusement il est impossible en pratique d'étudier toutes les lois d'échange imaginables, nous devons donc faire des choix. Dans cette étude du modèle nous choisissons de nous intéresser à 4 lois bio-inspirées\footnote{JL: a-t-on des exemples sous la main pour ces 4 lois?} représentant des comportements biologiques fondamentalement différents, ceci dans l'espoir de mettre en évidence des liens entre le caractère des lois et leurs conséquences sur la dynamique d'échange (par ex. apparition de sous-populations riches et pauvres, concentration de la population autour d'une certaine charge,...). Dans les perspectives du projet, présentées au dernier chapitre, nous discuterons de la possibilité de paramétriser ces lois et de l'intérêt d'étudier la dynamique du système en fonction des paramètres introduits.\\
 
 
 \subsection{La loi constante}
 
-La première loi étudiée est une loi dite constante, où les fourmis reçoivent ou donnent leur nourriture indépendement de la quantité transportée, à l'exception des conditions limites (\ref{ConditionsBordsProbabilite}). Les fonctions $P_R(l)$ et $P_D(l)$ sont donc constantes sur l'interval $]0,1[$ et vallent $0,5$:\\
+La première loi étudiée est une loi dite constante, où les fourmis reçoivent ou donnent leur nourriture indépendamment de la quantité transportée, à l'exception des conditions limites (\ref{ConditionsBordsProbabilite}). Les fonctions $P_R(l)$ et $P_D(l)$ sont donc constantes sur l'interval $]0,1[$ et vallent $0,5$:\\
 
 \begin{equation}
 \left \{
@@ -265,7 +164,7 @@ $l\in]0,1[$.
 \end{figure}
 
 \subsection{La loi linéaire}
-Nous étudions ensuite une loi dite linéaire, où la probabilité d'être donneur est linéaire en la charge. Dans ce cas, les fourmis ont d'autant plus tendance à se charger qu'elles sont vides et inversément à se délester qu'elles sont remplies. Les fonctions $P_R(l)$ et $P_D(l)$ sont donc définies comme suit:
+Nous étudions ensuite une loi dite linéaire, où la probabilité d'être donneur est linéaire en la charge. Dans ce cas, les fourmis ont d'autant plus tendance à se charger qu'elles sont vides et inversement à se délester qu'elles sont remplies. Les fonctions $P_R(l)$ et $P_D(l)$ sont donc définies comme suit:
 \begin{equation}
 \left \{
 \begin{aligned}
@@ -287,7 +186,7 @@ $l\in[0,1]$. Les conditions aux bords \ref{ConditionsBordsProbabilite} sont auto
 
 
 \subsection{La loi antilinéaire}
-Nous étudions également une loi dite antilinéaire, qui représente la situation inverse de la loi linéaire, où cette fois la probabilité d'être receveur est linéaire en la charge. Dans ce cas, les fourmis ont d'autant plus tendance à se charger qu'elles sont remplies et à se délester qu'elles sont vides. (donner un exemple de phénomène biologique équivalent \fixme). Les fonctions $P_R(l)$ et $P_D(l)$ sont définies comme suit:
+Nous étudions également une loi dite antilinéaire, qui représente la situation inverse de la loi linéaire, où cette fois la probabilité d'être receveur est linéaire en la charge. Dans ce cas, les fourmis ont d'autant plus tendance à se charger qu'elles sont remplies et à se délester qu'elles sont vides. Les fonctions $P_R(l)$ et $P_D(l)$ sont définies comme suit:
 \begin{equation}
 \left \{
 \begin{aligned}
@@ -307,12 +206,12 @@ $l\in]0,1[$, avec les conditions aux bords \ref{ConditionsBordsProbabilite}.
 \end{figure}
 
 \subsection{La loi vague}
-Nous étudions enfin une loi dite vague, où cette fois les probabilité d'être receveur et donneur ne sont plus des fonctions du premier degré. Cette loi propose 2 régimes différents, à forte charge les individus auront d'autant plus envie de se délester qu'ils sont chargés alors que l'inverse a lieu à faible charge. Les fonctions $P_R(l)$ et $P_D(l)$ sont définies comme suit:
+Nous étudions enfin une loi dite vague, où cette fois les probabilités d'être receveur et donneur ne sont plus du premier degré en la charge. Cette loi propose 2 régimes différents, à forte charge les individus auront d'autant plus envie de se délester qu'ils sont chargés alors que l'inverse a lieu à faible charge. Les fonctions $P_R(l)$ et $P_D(l)$ sont définies comme suit:
 \begin{equation}
 \left \{
 \begin{aligned}
 P_R (l) &= -2l^2+1.5l+0.5\\
-P_D (l) &= 2l^2-1.5+0.5\\
+P_D (l) &= 2l^2-1.5l+0.5\\
 \end{aligned}
 \right.
 \label{PRVague}
@@ -325,3 +224,5 @@ $l\in]0,1[$, avec les conditions aux bords \ref{ConditionsBordsProbabilite}.
 \caption{Probabilité d'être receveur ou donneur en fonction de la charge transportée, dans le cadre d'une loi vague.}
 \label{ProbaVague}
 \end{figure}
+
+(Penser à mettre des exemples bio pour chaque lois! \fixme)

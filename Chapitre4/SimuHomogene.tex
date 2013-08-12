@@ -1,0 +1,223 @@
+\chapter{Simulations stochastiques sur une population homogène}
+\section{Simulations stochastiques}
+En plus de l'analyse analytique jusqu'ici considérée, nous pouvons étudier la dynamique sur base de simulations stochastiques. Cette approche nous permettra d'étudier de nouveaux aspects relevants pour la dynamique, puisque l'équation maîtresse ne représente pas le caractère stochastique des échanges.\\
+
+Dans un premier temps ces simulations serviront de contrôle pour nos calculs théoriques effectués au chapitre précédent, on s'assurera que les distributions d'équilibre atteintes par simulation soient bien identiques aux distributions calculées analytiquement. Dans un second temps, ces simulations nous permettront d'obtenir de nouveaux résultats plus compliqués, voir impossible(s?) à retrouver analytiquement, comme l'étude de l'ergodicité du système (présentée plus bas) ou la détermination d'un temps caractéristique de retour à l'équilibre.\\
+
+Les simulations introduites ici considèrent $N$ individus chargés, qui tenteront des échanges d'une unité de charge avec un partenaire choisi aléatoirement. Bien entendu, les probabilités d'échange sont définies comme au chapitre 2 et la quantité de nourriture répartie dans la population, comme le nombre d'individus, sont des grandeurs conservées pendant la simulation.\\
+
+Nous considérons 2 simulations différentes:
+\begin{itemize}
+\item[$\bullet$] des simulations à échanges synchrones, où à chaque pas de temps $\frac{N}{2}$ couples sont formés et chacun tentera un échange
+\item[$\bullet$] des simulations asynchrones, où à chaque pas de temps 1 seul couple est formé et tentera d'échanger.\\
+\end{itemize}
+
+Nous montrerons que ces simulations sont identiques moyennant un facteur de conversion des échelles de temps et choisirons d'utiliser uniquement les simulations synchrones.\\
+
+Les algorithmes des 2 simulations sont présentés en pseudo code aux pages suivantes.
+
+\clearpage
+
+\begin{algorithm}
+\caption{Simulations stochastiques synchrones de la dynamique d'échange.}
+\begin{algorithmic}
+
+%\Function{evolution}{a}
+%\State $a \gets a+1$
+%\EndFunction
+\State Nb$_{Simul} \gets 10000$
+\State Nb$_{Indiv} \gets 1000$\\
+
+\State ChargeUnit $\gets 0.01$
+
+\State $Q_{tot} \gets 500$\\
+
+
+\State TF $\gets$ Table[$Nb_{Indiv}$][$Nb_{Simul}$]
+\State \textcolor{blue}{On crée un tableau TF, t.q. TF[i][j] contient la charge de l'individu i au temps j.}\\
+\State TF $\gets$ InitialiseTF($Q_{tot}$)
+\State \textcolor{blue}{Initialise le tableau TF en distribuant la charge totale dans la population.}\\
+
+\For{tps $\gets 0, Nb_{Simul}$}
+	\State Indices $\gets$ shuffle(1,$Nb_{Indiv}$) 
+	\State \textcolor{blue}{Crée une liste contenant les entiers de 1 à $Nb_{Indiv}$ mélangés aléatoirement.}\\
+	\For{$i \gets 0, Nb_{Indiv}/2$}
+		\State k $\gets$ Indices[2i]
+		\State l $\gets$ Indices[2i+1] \\
+		
+		\State $x,y \gets random()$\\
+		
+		\State $l_1 \gets TF[k][tps]$
+		\State $l_2 \gets TF[l][tps]$\\
+		
+		\If{$x<P_R(l_1)$ , $y > P_R(l_2) $}
+			\State don $\gets$ ChargeUnit 
+		\ElsIf{$x>P_R(l_1)$ , $y < P_R(l_2) $}
+			\State don $\gets$ -ChargeUnit 
+		\Else
+			\State $don=0$
+		\EndIf \\
+		
+		\State $TF[k][tps+1] \gets TF[k][tps]+don$
+        \State $TF[l][tps+1] \gets TF[l][tps]-don$\\
+	\EndFor
+\EndFor
+
+
+
+\end{algorithmic}
+\end{algorithm}
+
+
+
+\clearpage
+
+\begin{algorithm}
+\caption{Simulations stochastiques asynchrones de la dynamique d'échange.}
+\begin{algorithmic}
+
+%\Function{evolution}{a}
+%\State $a \gets a+1$
+%\EndFunction
+\State $Nb_{Simul} \gets 5 000 000$
+\State $Nb_{Indiv} \gets 1000$\\
+
+\State ChargeUnit $\gets 0.01$
+
+\State $Q_{tot} \gets 500$\\
+
+
+\State TF $\gets$ Table[$Nb_{Indiv}$][$Nb_{Simul}$]
+\State \textcolor{blue}{On crée un tableau TF, t.q. TF[i][j] contient la charge de l'individu i au temps j.}\\
+\State TF $\gets$ InitialiseTF($Q_{tot}$)
+\State \textcolor{blue}{Initialise le tableau TF en distribuant la charge totale dans la population.}\\
+
+\For{tps $\gets 0, Nb_{Simul}$}
+	
+	\State k $\gets random(Nb_{Indiv})$
+	\State l $\gets random(Nb_{Indiv})$
+	\While{k==l}
+		\State l $\gets random(Nb_{Indiv})$
+	\EndWhile
+	\State \textcolor{blue}{on assure $k \neq l$}\\
+		
+	\State $x,y \gets random()$\\
+		
+	\State $l_1 \gets TF[k][tps]$
+	\State $l_2 \gets TF[l][tps]$\\
+		
+	\If{$x<P_R(l_1)$ , $y > P_R(l_2) $}
+		\State don $\gets$ ChargeUnit 
+	\ElsIf{$x>P_R(l_1)$ , $y < P_R(l_2) $}
+		\State don $\gets$ -ChargeUnit 
+	\Else
+		\State $don=0$
+	\EndIf \\
+		
+	\State $TF[k][tps+1] \gets TF[k][tps]+don$
+    \State $TF[l][tps+1] \gets TF[l][tps]-don$\\
+\EndFor
+
+
+
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Similarité des simulations}
+
+Comme annoncé, nous montrons ici que les simulations synchrones et asynchrones sont identiques moyennant un facteur de conversion des échelles temporelles, et représentent donc la même dynamique. Chaque pas de temps de la simulation synchrone génère $\frac{N}{2}$ interactions, contre $1$ pour la simulation asynchrone; on s'attend donc à un facteur de conversion $\frac{N}{2}$.\\
+
+Pour quantifier l'évolution temporelle du système via les simulations, nous mesurons l'évolution du moment d'ordre 2 de la distribution de population dans l'espace des charges. Les moments d'ordre $0$ et $1$ correspondent respectivement au nombre d'individus et à la quantité de nourriture dans la population (équation \ref{moment01}), qui sont 2 grandeurs invariantes et ne peuvent nous donner d'informations sur l'évolution temporelle du système.
+
+\begin{equation}
+\begin{aligned}
+<l^0> &= \int_0^1 X(l,t) dl = 1\\
+<l^1> &= \int_0^1 l X(l,t) dl = Q\\
+\end{aligned}
+\label{moment01}
+\end{equation}
+
+Le moment d'ordre 2 est donc donné par:
+
+\begin{equation}
+\begin{aligned}
+<l^2>(t) &= \int_0^1 l^2 X(l,t) dl 
+\end{aligned}
+\label{moment2continu}
+\end{equation}
+
+et ne correspond à aucune grandeur biologique évidente.\\
+
+Nous comparons le moment d'ordre 2 mesuré sur chacune des simulations pour 2 lois différentes et, à chaque fois, 2 quantités de nourriture différentes; les autres paramètres de simulation sont laissés identiques. Les lois considérées sont la loi constante et la loi antilinéaire, et nous prenons des quantités de nourriture correspondantes à $25$ et $65\%$ de la capacité maximal de la population. Les résultats sont repris ci-dessous. \fixme
+
+
+%\begin{figure}[h]
+%\centering
+%\includegraphics[scale=0.7]{Figures/Homogene/comparaisonSyAs.pdf}
+%\caption{Discrétisation de l'espace des charges. Chaque état occupable est caractérisé par un indice $i$ allant de $0$ à $n$.}
+%\label{discretisation}
+%\end{figure}
+
+
+
+
+
+
+
+
+
+\section{Ergodicité}
+
+Dans cette section, nous recourons aux simulations pour répondre à une question simple: une fois à l'équilibre, combien de temps faut-il pour qu'une fourmis riche\footnote{Entendre: "fortement chargée"} devienne pauvre et inversement, une fourmis pauvre devienne riche?\\
+
+Grâce aux simulations nous pouvons suivre la trajectoire d'un individu dans l'espace des charges et regarder le temps qu'il prend pour passer d'un état très chargé à un état quasi vide. Ceci dit, définir correctement un état ``très chargé'' ou ``quasi vide'' est parfois délicat et nous voulons étudier l'ensemble de la population.\\
+
+
+Sur base des simulations on définit:
+\begin{itemize}
+
+\item[$\bullet$] $q_f[t]$\\
+L'état de la fourmi $f$ au pas de temps $t$
+
+\item[$\bullet$] $h_{f,\tau}(i)=\frac{1}{\tau} \sum_{t=1}^{\tau}\delta_{q_f[t]}^i$ \\
+La fréquence d'occupation de l'état $i$ par la fourmis $f$ durant $\tau$ pas de temps, simulés à l'équilibre. ($f=1,...,10000$)
+
+
+\item[$\bullet$] $\mu_{\tau}(i) = \frac{1}{N}\sum_{f=1}^N h_{f,\tau}(i)$ \\
+La moyenne des fréquences d'occupation de l'état $i$ sur toutes les fourmis.
+
+\item[$\bullet$] $\sigma_{\tau}(i) = \sqrt{\frac{1}{N-1}\sum_{f=1}^N (h_{f,\tau}(i)-\mu_{\tau}(i))^2}$ \\
+L'écart-type des fréquences d'occupation de l'état $i$ sur toutes les fourmis.\\
+\end{itemize}
+
+
+\section{Temps caractéristique d'arrivée à l'équilibre}
+
+Nous nous sommes jusqu'ici concentrés sur la dynamique d'équilibre, retrouvant la distribution de population ou caractérisant le temps de passage d'un état riche à un état pauvre. Dans cette section nous nous intéressons à la dynamique hors équilibre, en particulier à la détermination d'un temps d'arrivée à l'état d'équilibre.\\
+
+Bien que nous ayons montré que les distributions stationnaires sont indépendantes des conditions initiales (i.e. de la répartition de la nourriture au sein du groupe), rien ne dit qu'il en est de même pour la vitesse d'arrivée à cette distribution. Dès lors nous regardons comment évolue la distribution de population pour différentes répartitions initiales d'une même quantité de nourriture.\\
+
+Afin de quantifier l'état d'une population et d'étudier son évolution temporelle, nous reprenons le second moment de la distribution, présenté 2 sections plus haut (équation \ref{moment2}). Nous comparons donc l'évolution de ce second moment en fonction du temps pour 6 conditions initiales différentes. 
+
+\begin{equation}
+\begin{aligned}
+<l^2>(t) &= \int_0^1 l^2 X(l,t) dl 
+\end{aligned}
+\label{moment2}
+\end{equation}
+
+Les résultats sont résumés ci-dessous. On observe une croissance exponentielle vers l'état stationnaire, on peut donc écrire $<l^2>(t)$ comme:
+\begin{equation}
+\begin{aligned}
+<l^2>(t)=e^{-\frac{t}{\tau}}+<l^2>_{statio}
+\end{aligned}
+\end{equation}
+
+où
+\begin{equation}
+\begin{aligned}
+<l^2>_{statio}= \int_0^1 l^2 X(l)_{statio} dl
+\end{aligned}
+\end{equation}
+
+et $\tau$ est un temps caractéristique d'arrivée à l'équilibre.

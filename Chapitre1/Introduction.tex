@@ -1,33 +1,66 @@
 \chapter{Introduction}
 
 \section{Présentation et intérêt du travail}
-I am sexy and I know it! à rédiger le jour J à 11h58
+A rédiger le jour J à 11h58
 
-- slide p3
-- continuité du travail de William
+%- slide p3
+%- continuité du travail de William
 
-\section{Contexte biologique}
+\section{Gestion de la nourriture dans une fourmilière}
 
-\subsection{Gestion de la nourriture}
+Les sociétés d'insectes, et notamment les fourmis, sont caractérisées par une division du travail: chaque individu est plus ou moins spécialisé dans une activité comme la recherche de nourriture, le stockage des réserves, le soin aux larves ou encore la reproduction. De cette division du travail, il résulte que seulement une fraction de la population – les fourrageuses - assure l'approvisionnement de la colonie.\\
 
-Au sein de la colonie chaque fourmis occupe une fonction bien précise\footnote{Ces fonctions peuvent évoluer pour un individu, on constate (ref \fixme) que les rôles sont généralement attribués selon l'âge de l'individu.}, que ce soit la recherche de nourriture, son stockage, la ponte... La recherche et récolte de nourriture est assurée par les fourmis fourrageuses, le stockage par certaines domestiques, la redistribution par d'autres. Cette répartition des tâches, caractéristique des animaux sociaux, par rapport à la stratégie de récolte individuelle, libère du temps pour une partie de la population. Ce qui permet alors d'autres spécialisations tels la reproduction, la solidification du nid etc.\\
+La nourriture rapportée au nid par les fourrageuses est distribuée à l'ensemble de la colonie grâce à des échanges entre les insectes ou à la formation de réserves communes \citep{holldobler_ants_1990,passera_les_2005}. La gestion de la nourriture chez les fourmis peut se résumer en 3 phases principales : la récolte, le stockage et la distribution.\\
 
+Les fourrageuses, en explorant le milieu, découvrent de la nourriture qu'elles rapportent au nid. Chez un très grand nombre d'espèces, lors de leurs déplacements entre la nourriture et le nid, les fourrageuses déposent une piste chimique qui va permettre à d'autres individus de se rendre rapidement à la source de nourriture \citep{camazine_self-organization_2003}. Il en résulte une croissance exponentielle du nombre d'individus exploitant la source.\\
 
-La gestion de la nourriture chez les fourmis peut être schématisée en 3 phases principales:
-
-\begin{itemize}
-\item[$\bullet$] Dans un premier temps, \textbf{la récolte de nourriture.}
-Les 3 dynamiques: récolte (par cycle), échange (continu), stockage (continu)
-\end{itemize}
-
-
-\subsection{La dynamique d'échange}
-
-Position du modèle, importance des différents facteurs à l'échelle de l'individu/de la population, explications sur la trophallaxie+jabot social, ...
+De retour au nid, les fourrageuses y déposent leur charge dans le cas de nourriture solide (insectes, graines) \citep{reyes-lopez_food_2002}. Dans le cas de nourriture liquide, celle-ci est transportée dans un second estomac, appelé le jabot social, et la fourrageuse transfère par trophallaxie sa charge à une domestique (voir figure \ref{trophallaxie}). Après quoi elle retournera sur le lieu de sa découverte pour s'y alimenter à nouveau. Si la fourrageuse ne trouve pas de receveuse, elle restera dans le nid. Ce dernier comportement est à l'origine d'un feedback négatif qui permettra l'arrêt de l'exploitation lorsque la colonie sera ``remplie'' \citep{mailleux_impact_2010}. Les domestiques chargées vont effectuer des échanges qui contribuent à propager la nourriture à l'intérieur de la colonie et à organiser les stocks. Dans le cas de nourriture liquide – nourriture à laquelle s'intéresse notre travail- celle-ci est stockée dans le jabot social de certaines ouvrières. Cette nourriture sera consommée relativement lentement et peut être stockée plusieurs jours. \\
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.4]{Figures/Introduction/trophallaxie.png}
-\caption{Processus de trophallaxie. De la nourriture prédigérée est stockée dans un second estomac appelé le jabot social, afin de pouvoir être régurgitée plus tard à un condisciple. Source: myrmecos.net}
+\includegraphics[scale=0.25]{Figures/Introduction/trophallaxie.png}
+\caption{Processus de trophallaxie: échange de nourriture entre 2 individus. La nourriture est préalablement stockée dans le jabot social, pour être régurgitée plus tard à une condisciple. Les flux de nourriture au sein du nid sont donc générés par le déplacement des individus chargés, mais également par ces interactions sociales entre les domestiques.  Source: \citep{holldobler_ants_1990}}
 \label{trophallaxie}
 \end{figure}
+
+
+\section{Position du travail}
+
+Un ensemble de données expérimentales montrent que cette nourriture n'est pas stockée également dans le nid : des ouvrières stockent des quantités plus importantes que d'autres \citep{buffin_feeding_2009,buffin_collective_2012} Deux hypothèses extrêmes se retrouvent dans la littérature. La première – classique - suppose que certaines ouvrières ont des capacités de stockage ou des propensions à stocker plus importantes. L'autre suppose que les ouvrières ne présentent pas ces différences intrinsèques, mais que celles-ci résultent des dynamiques d'échange entre les individus.\\
+
+Ce travail a comme premier but de développer un modèle générique des trophallaxies entre ouvrières au sein d'une colonie de fourmis; dans une seconde étape, d'étudier la relation entre les différentes règles d'échanges et la distribution des réserves parmi les individus. Nous nous intéressons en priorité à des situations pour lesquelles il n'y a pas de différences comportementales entre les ouvrières et dans une seconde étape aux liens entre la distribution des réserves, les règles d'échanges et des différences entre individus au niveau de leur capacité de stockage.\\
+
+Dans des conditions de laboratoire, il apparaît que la récolte est relativement rapide par rapport à la réorganisation des réserves  \citep{buffin_feeding_2009,buffin_collective_2012}. Ceci nous a conduit à limiter notre travail à l'étude de la distribution des réserves parmi les ouvrières en considérant la quantité totale comme constante. La possibilité de coupler se modèle avec un modèle de récolte et de stockage sera discutée dans les perspectives.\\
+
+Une littérature expérimentale importante est consacrée à ces phénomènes de trophallaxie \citep{richard_intracolony_2013} pour une revue récente, mais elle reste très qualitative d'une part et d'autre part peu de travaux théoriques leur ont été consacrés, travaux théoriques qui sont généralement des simulations informatiques de type multi-agents \citep{schmickl_trophallaxis_2007}.
+
+%
+%Au sein de la colonie chaque fourmis occupe une fonction bien précise\footnote{Ces fonctions peuvent évoluer pour un individu, on constate (ref \fixme) que les rôles sont généralement attribués selon l'âge de l'individu.}, que ce soit la recherche de nourriture, l'entretien du nid, la ponte, etc. Ainsi chacune ne va pas individuellement se nourrir, mais la colonie va assurer des provisions. La recherche et récolte de nourriture est effectuée par des individus spécialisés appelés fourrageuses; cette nourriture est ensuite stockée puis redistribuée dans le nid par d'autres individus: les domestiques. Cette répartition des tâches, caractéristique des animaux sociaux, par rapport à la stratégie de récolte individuelle, permet de libérer du temps pour une partie de la population.\\
+%
+%
+%La gestion de la nourriture chez les fourmis peut être schématisée en 3 phases principales:
+%\begin{itemize}
+%\item[$\bullet$] La récolte
+%\item[$\bullet$] Les échanges
+%\item[$\bullet$] Le stockage
+%\end{itemize}
+
+%
+%\paragraph{La récolte}est assurée par les fourmis dites fourrageuses, celles-ci vont quitter le nid et partir à la recherche de nourriture. Plus elles visiteront une source de nourriture, plus elles susciteront l'intérêt d'autres fourrageuses via un dépôt de phéromones le long de leur chemin. La nourriture récoltée est prédigérée et stockée dans un second estomac appelé \textit{le jabot social}, elle pourra être régurgitée à une congénère une fois ramenée au nid. Le départ des fourrageuses se fait par vagues successives espacées de quelques heures selon les besoins de la colonie.
+%
+%\paragraph{Les échanges} sont assurés par les domestiques une fois la nourriture ramenée au nid. Celles-ci stockent momentanément la nourriture dans leur jabot social et vont fréquemment la régurgiter par processus de trophallaxie à une condisciple (voir figure \ref{trophallaxie}). Les flux de nourriture au sein du nid sont donc générés par le déplacement des individus chargés, mais également par les interactions sociales entre les domestiques. La dynamique d'échange remplit deux rôles: acheminer la nourriture récoltée par les fourrageuses vers les individus stockeurs et redistribuer la nourriture stockée à la population.
+%
+%\paragraph{Le stockage} est assuré par certaines domestiques à l'intérieur du nid. Plusieurs formes de stockage sont observés selon les espèces. Les unes préféreront la construction de grenier où les domestiques viendront entreposer la nourriture, les autres emmagasineront la nourriture récoltée dans l'abdomen de certaines domestiques pour la restituer plus tard. \\
+%
+%
+%Au cours de ce travail nous nous intéressons exclusivement à la dynamique d'échange. Nous construisons un modèle décrivant les échanges au sein d'une colonie de fourmis, le but étant d'éclaircir les mécanismes de cette dynamique et les facteurs qui l'optimisent selon certaines contraintes. La possibilité de coupler se modèle avec un modèle de récolte et de stockage sera discutée dans les perspectives.\\
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{Figures/Introduction/3phases.pdf}
+\caption{Schéma des 3 phases principales caractérisant la gestion de la nourriture au sein d'une fourmilière.}
+\label{3phases}
+\end{figure}
+
+
+
