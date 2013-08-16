@@ -123,7 +123,7 @@ Les algorithmes des 2 simulations sont présentés en pseudo code aux pages suiv
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Similarité des simulations}
+\subsection{Équivalence des simulations}
 
 Comme annoncé, nous montrons ici que les simulations synchrones et asynchrones sont identiques moyennant un facteur de conversion des échelles temporelles, et représentent donc la même dynamique. Chaque pas de temps de la simulation synchrone génère $\frac{N}{2}$ interactions, contre $1$ pour la simulation asynchrone; on s'attend donc à un facteur de conversion $\frac{N}{2}$.\\
 
@@ -148,54 +148,147 @@ Le moment d'ordre 2 est donc donné par:
 
 et ne correspond à aucune grandeur biologique évidente.\\
 
-Nous comparons le moment d'ordre 2 mesuré sur chacune des simulations pour 2 lois différentes et, à chaque fois, 2 quantités de nourriture différentes; les autres paramètres de simulation sont laissés identiques. Les lois considérées sont la loi constante et la loi antilinéaire, et nous prenons des quantités de nourriture correspondantes à $25$ et $65\%$ de la capacité maximal de la population. Les résultats sont repris ci-dessous. \fixme
+Nous comparons le moment d'ordre 2 mesuré sur chacune des simulations pour 2 lois différentes et, à chaque fois, 2 quantités de nourriture différentes; les autres paramètres de simulation sont laissés identiques. Les lois considérées sont la loi constante et la loi antilinéaire, et nous prenons des quantités de nourriture correspondantes à $20$ et $50\%$ de la capacité maximale de la population. Les résultats sont représentés aux figures \ref{EquivalenceCste} et \ref{EquivalenceAnti}.
 
 
-%\begin{figure}[h]
-%\centering
-%\includegraphics[scale=0.7]{Figures/Homogene/comparaisonSyAs.pdf}
-%\caption{Discrétisation de l'espace des charges. Chaque état occupable est caractérisé par un indice $i$ allant de $0$ à $n$.}
-%\label{discretisation}
-%\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_M2_cste_Q2050.pdf}
+\caption{Comparaison des simulations synchrones et asynchrones dans le cadre de la loi constante, pour des quantité de nourriture correspondantes à $20\%$ (à gauche) et $50\%$(à droite) de la capacité maximale de la population. On a converti l'échelle de temps des simulations synchrones d'un facteur $\frac{N}{2}$. Paramètres: $N=500$, $\Delta l = 1\%$. Courbes moyennées sur 20 simulations.}
+\label{EquivalenceCste}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_M2_anti_Q2050.pdf}
+\caption{Comparaison des simulations synchrones et asynchrones dans le cadre de la loi antilinéaire, pour des quantité de nourriture correspondantes à $20\%$ (à gauche) et $50\%$(à droite) de la capacité maximale de la population. On a converti l'échelle de temps des simulations synchrones d'un facteur $\frac{N}{2}$. Paramètres: $N=500$, $\Delta l = 1\%$. Courbes moyennées sur 20 simulations.}
+\label{EquivalenceAnti}
+\end{figure}
 
 
+Dans tous les cas, les courbes obtenues via les simulations synchrones et celles via les simulations asynchrones se superposent; les simulations synchrones et asynchrones représentent bien la même dynamique. Notons bien que nous n'avons représenté ici qu'un échantillon des cas de figures (2 lois et 2 quantités de nourriture différentes), les autres cas étant équivalents nous avons jugé inutile de représenter une multitude de figures pour appuyer notre argumentation.
+
+\section{Comparaison modèle - simulations}
+
+Maintenant que nous savons que les simulations synchrones et asynchrones sont équivalentes, nous pouvons nous contenter d'utiliser les simulations synchrones pour la suite du travail. \\
+
+Le premier intérêt de nos simulations est de s'en servir comme contrôle du modèle analytique proposé au chapitre précédent. Nous allons donc nous assurer que les distributions stationnaires obtenues via les simulations correspondent à celles calculées analytiquement sur base du modèle au chapitre 5. La comparaison sera faites pour chaque loi, et à chaque fois pour 6 quantités de nourriture différentes. Les résultats sont repris aux figures \ref{ComparaisonMScste}, \ref{ComparaisonMSlineaire}, \ref{ComparaisonMSanti} et \ref{ComparaisonMSvague}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_ComparaisonMScste.pdf}
+\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi constante pour 6 quantités de nourritures différentes.}
+\label{ComparaisonMScste}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_ComparaisonMSlineaire.pdf}
+\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi linéaire pour 6 quantités de nourritures différentes.}
+\label{ComparaisonMSlineaire}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_ComparaisonMSanti.pdf}
+\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi antilinéaire pour 6 quantités de nourritures différentes.}
+\label{ComparaisonMSanti}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_ComparaisonMSvague.pdf}
+\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi vague pour 6 quantités de nourritures différentes.}
+\label{ComparaisonMSvague}
+\end{figure}
+
+\section{Ergodicité - Différentiation des individus à l'équilibre}
+
+choisir un titre
+
+Dans cette section, nous recourons aux simulations pour répondre à une question simple: une fois à l'équilibre, sur quelle échelle de temps les individus sont-ils différentiables ou combien de temps faut-il pour qu'une fourmis riche\footnote{Comprendre: "fortement chargée"} devienne pauvre et inversement, une fourmis pauvre devienne riche?\\
+
+Cette question est délicate, comment définir précisément un individu ``très chargé'' ou un individu ``quasiment vide''? Par exemple dans le modèle à loi linéaire, les individus se concentrent tous autour d'une charge moyenne, alors que dans le modèle antilinéaire les individus seront complètement remplis ou complètement vides.\\
+
+Néanmoins grâce aux simulations nous pouvons suivre la trajectoire à l'équilibre d'un seul individu dans l'espace des charges et mesurer la fréquence d'occupation de chaque état durant un laps de temps fixé. Cette mesure peut être effectuée sur toute la population, il est donc possible de comparer la fréquence d'occupation de chaque état d'un individu à l'autre.\\
 
 
+On définit alors sur base des simulations:
 
-
-
-
-
-\section{Ergodicité}
-
-Dans cette section, nous recourons aux simulations pour répondre à une question simple: une fois à l'équilibre, combien de temps faut-il pour qu'une fourmis riche\footnote{Entendre: "fortement chargée"} devienne pauvre et inversement, une fourmis pauvre devienne riche?\\
-
-Grâce aux simulations nous pouvons suivre la trajectoire d'un individu dans l'espace des charges et regarder le temps qu'il prend pour passer d'un état très chargé à un état quasi vide. Ceci dit, définir correctement un état ``très chargé'' ou ``quasi vide'' est parfois délicat et nous voulons étudier l'ensemble de la population.\\
-
-
-Sur base des simulations on définit:
 \begin{itemize}
 
 \item[$\bullet$] $q_f[t]$\\
-L'état de la fourmi $f$ au pas de temps $t$
+L'état de la fourmi $f$ au pas de temps $t$. ($f=1,...,10000$)\\
 
 \item[$\bullet$] $h_{f,\tau}(i)=\frac{1}{\tau} \sum_{t=1}^{\tau}\delta_{q_f[t]}^i$ \\
-La fréquence d'occupation de l'état $i$ par la fourmis $f$ durant $\tau$ pas de temps, simulés à l'équilibre. ($f=1,...,10000$)
+La fréquence d'occupation de l'état $i$ par la fourmis $f$ après $\tau$ interactions, simulées à l'équilibre.\\
 
 
 \item[$\bullet$] $\mu_{\tau}(i) = \frac{1}{N}\sum_{f=1}^N h_{f,\tau}(i)$ \\
-La moyenne des fréquences d'occupation de l'état $i$ sur toutes les fourmis.
+La moyenne des fréquences d'occupation de l'état $i$ sur toutes les fourmis.\\
 
 \item[$\bullet$] $\sigma_{\tau}(i) = \sqrt{\frac{1}{N-1}\sum_{f=1}^N (h_{f,\tau}(i)-\mu_{\tau}(i))^2}$ \\
 L'écart-type des fréquences d'occupation de l'état $i$ sur toutes les fourmis.\\
 \end{itemize}
 
+Une première observation est que la courbe $\mu_{\tau}(i)$ correspond à la distribution stationnaire $X(i)_{statio}$ quelque soit la période $\tau$ choisie. En effet:
+
+\begin{equation}
+\begin{aligned}
+\mu_{\tau}(i) 	&= \frac{1}{N}\sum_{f=1}^N h_{f,\tau}(i)\\
+				&= \frac{1}{N}\sum_{f=1}^N \frac{1}{\tau} \sum_{t=1}^{\tau}\delta_{q_f[t]}^i\\
+				&= \frac{1}{\tau} \sum_{t=1}^{\tau} \frac{1}{N}\sum_{f=1}^N \delta_{q_f[t]}^i\\
+				&= \frac{1}{\tau} \sum_{t=1}^{\tau} X(i)_{statio}\\
+				&= X(i)_{statio}
+\end{aligned}
+\end{equation}
+
+La grandeur relevante ici est l'écart-type des fréquences d'occupation des états, pris sur la population. Cette grandeur caractérise la différentiabilité des individus, elle atteint 0 quand toutes les fourmis ont occupé chaque état avec la même fréquence et est d'autant plus grand que les fourmis ont tendance à ``stagner'' dans leur état.  \\
+
+Nous nous intéressons donc à la dépendance en $\tau$ de cette grandeur. Nous illustrons dans un premier temps cette dépendance en observant la variation de l'écart-type pour 3 valeurs de $\tau: 500, 1000$ et $5000$. On porte donc en graphique l'écart à la distribution moyenne (i.e. stationnaire) dans l'espace des charges pour 2 lois différentes (constante et vague), voir figures \ref{ergo_cste} et \ref{ergo_vague}. Comme attendu l'écart-type diminue quand $\tau$ augmente; en effet, au plus le nombre d'interactions augmente, au plus chaque individu va se déplacer dans l'espace des charges et les fréquences d'occupation des états s'uniformiseront sur la population.\\
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_ergo_vague.pdf}
+\caption{Représentation de l'écart-type pour 3 valeurs croissantes de $\tau$. On observe que celui-ci diminue quand $\tau$ augmente. Paramètres: Loi vague, $Q=25$, $250$ individus, $\Delta l = 1\%$}
+\label{ergo_vague}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.25]{Figures/Homogene/crop_ergo_cste.pdf}
+\caption{Représentation de l'écart-type pour 3 valeurs croissantes de $\tau$. On observe que celui-ci diminue quand $\tau$ augmente. Paramètres: Loi constante, $Q=25$, $250$ individus, $\Delta l = 1\%$}
+\label{ergo_cste}
+\end{figure}
+
+
+Nous pouvons mesurer précisément la dépendance de $\sigma_{\tau}(i)$ en $\tau$ pour chaque loi et différentes quantités de nourriture. Ceci dit, $\sigma$ dépend explicitement de l'état $i$; dès lors, afin d'éviter une étude titanesque de l'évolution de $\sigma_{\tau}$ pour chaque état, nous choisissons de moyenner cette grandeur sur l'ensemble des états et de considérer alors:
+
+\begin{equation}
+<\sigma>(\tau)=\frac{1}{n}\sum_i^n \sigma_{\tau}(i)
+\label{moySTD}
+\end{equation}
+
+Les résultats sont repris aux figures \ref{ergo_cste}, \ref{ergo_lineaire},\ref{ergo_anti} et \ref{ergo_vague}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_STDvsTau_cste.pdf}
+\caption{Évolution de l'écart-type moyen en fonction du nombre d'échanges (équation \ref{moySTD}). Paramètres: Loi constante, $100$ individus, $\Delta l = 1\%$}
+\label{ergo_cste}
+\end{figure}
+
+A discuter. \fixme 
+Malheureusement l'étude de ces courbes ne nous permet pas de les caractériser clairement, que ce soit par un fitting exponentiel ou en loi de puissance.
+
 
 \section{Temps caractéristique d'arrivée à l'équilibre}
 
-Nous nous sommes jusqu'ici concentrés sur la dynamique d'équilibre, retrouvant la distribution de population ou caractérisant le temps de passage d'un état riche à un état pauvre. Dans cette section nous nous intéressons à la dynamique hors équilibre, en particulier à la détermination d'un temps d'arrivée à l'état d'équilibre.\\
+Nous nous sommes jusqu'ici concentrés sur la dynamique d'équilibre, retrouvant la distribution de population stationnaire ou caractérisant le temps de passage d'un état riche à un état pauvre. Dans cette section nous nous intéressons à la dynamique hors équilibre, en particulier on cherchera à déterminer un temps caractéristique d'arrivée à l'équilibre.\\
 
-Bien que nous ayons montré que les distributions stationnaires sont indépendantes des conditions initiales (i.e. de la répartition de la nourriture au sein du groupe), rien ne dit qu'il en est de même pour la vitesse d'arrivée à cette distribution. Dès lors nous regardons comment évolue la distribution de population pour différentes répartitions initiales d'une même quantité de nourriture.\\
+Bien que nous ayons montré que les distributions stationnaires sont indépendantes des conditions initiales (i.e. de la répartition de la nourriture au sein du groupe), rien ne dit qu'il en est de même pour la vitesse d'arrivée à cette distribution. Dès lors nous nous intéressons à l'évolution des distributions de population pour différentes répartitions initiales d'une même quantité de nourriture.\\
 
 Afin de quantifier l'état d'une population et d'étudier son évolution temporelle, nous reprenons le second moment de la distribution, présenté 2 sections plus haut (équation \ref{moment2}). Nous comparons donc l'évolution de ce second moment en fonction du temps pour 6 conditions initiales différentes. 
 
@@ -206,14 +299,17 @@ Afin de quantifier l'état d'une population et d'étudier son évolution tempore
 \label{moment2}
 \end{equation}
 
+
 Les résultats sont résumés ci-dessous. On observe une croissance exponentielle vers l'état stationnaire, on peut donc écrire $<l^2>(t)$ comme:
+
 \begin{equation}
 \begin{aligned}
-<l^2>(t)=e^{-\frac{t}{\tau}}+<l^2>_{statio}
+<l^2>(t)=A e^{-\frac{t}{\tau}}+<l^2>_{statio}
 \end{aligned}
 \end{equation}
 
 où
+
 \begin{equation}
 \begin{aligned}
 <l^2>_{statio}= \int_0^1 l^2 X(l)_{statio} dl

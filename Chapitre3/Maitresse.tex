@@ -4,7 +4,7 @@
 
 \section{Discrétisation}
 
-Nous allons commencer par proposer un modèle discret dans l'espace des charges et dans le temps décrivant la dynamique d'échange. Un chapitre sera exclusivement consacré au passage au continu de ce modèle discret.\\
+Nous allons commencer par proposer un modèle discret dans l'espace des charges et dans le temps décrivant la dynamique d'échange. Une limite vers le continu sera proposée dans le cadre du modèle linéaire.\\
 
 En imposant une discrétisation de la charge, toute quantité devient un multiple d'une charge élémentaire $\Delta l$, l'ensemble des états occupables par une fourmi dans l'espace des charges est donc donné par $i*\Delta l$ où $i$ est un entier qui varie entre $0$ et $n$, $n$ vérifiant $n.\Delta l = 1$. Par la suite, nous noterons les états par leur indice; une fourmi dite dans l'état $j$ correspond à une fourmi transportant une quantité $j* \Delta l$.\\
 
@@ -15,7 +15,7 @@ En imposant une discrétisation de la charge, toute quantité devient un multipl
 \label{discretisation}
 \end{figure}
 
-Nous choisissons également de discrétiser le temps en intervalles $\Delta t$, de sorte que chaque fourmi tente un échange avec une congénère par pas de temps. Il sera alors facile pour l'expérimentateur de relier l'échelle de temps du modèle au temps réel en mesurant la fréquence des trophallaxie.\\
+Nous choisissons également de discrétiser le temps en intervalles $\Delta t$, de sorte que chaque fourmi tente un échange avec une congénère par pas de temps. Il sera alors facile pour l'expérimentateur de relier l'échelle de temps du modèle au temps réel en mesurant la fréquence des trophallaxies.\\
 
 Le modèle présenté ici décrit la dynamique dans l'espace des charges générée par des échanges d'une gouttelette $\Delta l$ entre les individus à chaque pas de temps. La grandeur considérée sera donc $X(i,t)$: le nombre d'individus dans l'état $i$ au temps $t$, normalisée de sorte que:
 
@@ -23,6 +23,11 @@ Le modèle présenté ici décrit la dynamique dans l'espace des charges génér
 \sum_i X(i,t)=1\\
 \end{equation}
 
+Cette normalisation nous encourage à redéfinir la quantité de nourriture ds la population:
+
+\begin{equation}
+Q_{tot}= \sum_i i X(i,t)\\
+\end{equation}
 
 \section{Taux de transition}
 %Suite à une interaction,
@@ -73,7 +78,7 @@ où
 
 \section{Équation maîtresse}
 
-La connaissance des taux de transitions entre états (équation \ref{Wij}) nous permet d'établir l'équation maîtresse pour $X(i,t)$. La forme la plus générale \footnote{ref \fixme} de l'équation maîtresse d'une quantité définie sur un espace discret est donnée par:
+La connaissance des taux de transitions entre états (équation \ref{Wij}) nous permet d'établir l'équation maîtresse pour $X(i,t)$. La forme la plus générale de l'équation maîtresse sur un espace discret \citep{vankampen} est donnée par:
 
 \begin{equation}
 \begin{aligned}
@@ -118,7 +123,7 @@ On fera attention aux bords:
 \subsection{Forme générale pour la distribution stationnaire}
 Recherchons la distribution stationnaire de l'équation maîtresse \ref{MasterGeneral}.\\
 
-Pour les intervals aux bords $(i=0,i=n)$, on reprend les équations \ref{bord0} et \ref{bordN}, pour les autres $(i=1,...,n-1)$ l'équation \ref{Master}.\\
+Pour les intervalles aux bords $(i=0,i=n)$, on reprend les équations \ref{bord0} et \ref{bordN}, pour les autres $(i=1,...,n-1)$ l'équation \ref{Master}.\\
 
 $i=0$:
 \begin{equation}
@@ -174,7 +179,7 @@ X(i)&= X(i-1) \frac{\Sigma_D}{\Sigma_R} \frac{P_R(i-1)}{P_D(i)}  \\
 
 Néanmoins $\frac{\Sigma_D}{\Sigma_R}$ dépend des valeurs des $X(i)$ (on rappelle les équations \ref{SigmaRD}) et $X(0)$ n'est pas encore déterminé, il manque donc 2 équations supplémentaires à notre système pour qu'il soit complet.\\
 
-Heureusement nous avons imposé la conservation du nombre d'individus et de la charge totale dans la population. Ces 2 relations de conservation vont nous fournir les 2 dernières équations nécessaires:
+Ceci dit nous avons imposé la conservation du nombre d'individus et de la charge totale dans la population. Ces 2 relations de conservation vont nous fournir les 2 dernières équations nécessaires:
 \begin{itemize}
 	\item Conservation du nombre d'individus:
 		\begin{equation}
@@ -270,7 +275,7 @@ A quantité de nourriture fixée, le coefficient $\alpha$ est univoquement déte
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.3]{Figures/Maitresse/Loi_cste.pdf}
-\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``constant''. Les quantités de nourriture correspondent à $10, 25, 35, 50, 65, 75\%$ de la capacité maximale de stock de la colonie. $N=10000; \Delta l = 0.01$}
+\caption{Distribution stationnaire normalisée de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``constant''. Les quantités de nourriture correspondent à $10, 25, 35, 50, 65, 75\%$ de la capacité maximale de stock de la colonie. $N=10000; \Delta l = 0.01$}
 \label{DistribAnalytiqueCste}
 \end{figure}
 

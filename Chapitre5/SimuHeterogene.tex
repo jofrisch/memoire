@@ -1,10 +1,138 @@
 
 \chapter{Simulations stochastiques sur une population hétérogène}
 
+Nous avons jusqu'ici construit un modèle où tous les individus sont morphologiquement identiques, la seule distinction possible entre 2 fourmis étant la quantité de nourriture que chacune transporte. Sous ces considérations nous avons pu montrer par exemple que certaines lois comportementales conduisent à une séparation des rôles au sein de la population; une sous-population pouvant contenir la presque totalité de la  nourriture disponible.\\
+
+Néanmoins nous savons que les individus ne peuvent pas être exactement identiques; pour construire un modèle le plus réaliste possible il convient donc de considérer une distribution des paramètres intrinsèques (i.e. morphologiques) sur la population. L'intérêt de considérer des individus différents sera d'étudier l'impacte de ces différences sur la gestion de la nourriture. La colonie aura-t-elle tendance à stocker chez les individus les plus ``gros'' ou le plus ``maigre''? Ce choix dépend-il de la quantité de nourriture disponible? Une nouvelle fois nous choisissons de partir sans a priori et de considérer l'ensemble des comportements possibles.\\
+
+Ce chapitre se veut être une première approche de l'étude de la dynamique d'échange pour une population hétérogène. Nous y considérons des individus différentiables par le volume maximal de nourriture pouvant être transporté, c'est à dire par la taille de leur abdomen ou plus exactement de leur jabot social. Parmi toutes les distributions possibles des tailles d'abdomen sur la population nous choisissons de considérer uniquement   2 sous-populations de $\frac{N}{2}$ individus, l'une possédant des abdomens $2$ fois plus volumineux que l'autre.
+
+\section{Modification du modèle}
+
+Nous allons donc considérer une sous population de fourmis ``maigres'' et une de fourmis ``grosses''; le volume maximal de transport étant 2 fois plus important chez les grosses. \\
+
+A nouveau nous considérons la charge transportée par une fourmi, définie comme $l=\frac{V_{transport\'{e}}}{V_{max}}$ où $V_{max}$ est le volume du jabot social des fourmis ``grosses''. On comprend déjà que la charge d'une fourmi ``maigre'' variera entre $0$ et $\frac{1}{2}$, alors que celle d'une fourmi ``grosse'' variera entre $0$ et $1$.\\
+
+Nous choisissons de discrétiser l'espace des charges en $2n$ états, de sorte que toute quantité de nourriture soit un multiple d'une charge élémentaire $\Delta l$, vérifiant $n\Delta l = 1$. Par la suite nous prendrons toujours $n=100$. Le modèle décrit donc la dynamique dans l'espace des charges générée par des échanges de gouttelettes $\Delta l$ entre les individus à chaque pas de temps.\\
+
+On introduit $X_1(i,t)$ le nombre d'individus maigres dans l'état $i$ au temps $t$, et $X_2(j,t')$ le nombre d'individus gros dans l'état $j$ au temps $t'$. On normalise de sorte que :
+\begin{equation}
+\sum_{i=0}^{2n} X_1(i,t)+X_2(i,t)=X_{tot}=1
+\end{equation}
+Les individus ``maigres'' étant aussi nombreux que les ``gros'':
+\begin{equation}
+\sum_{i=0}^{n} X_1(i,t)=\sum_{i=0}^{2n} X_2(i,t)=\frac{1}{2}
+\end{equation}
+(Les états $i=n+1,...,2n$ étant inaccessibles pour la population de maigres: $X_1(i,t)=0$ sur ces états.)\\
+
+
+Les mécanismes d'échange sont similaires à ceux présentés au chapitre 2, et une fourmi choisira toujours de recevoir ou de donner de la nourriture sur base de son propre taux de remplissage. Ceci dit, dans le cadre d'une population hétérogène, 2 individus transportant un même volume de nourriture peuvent avoir des taux de remplissage différents si l'un est maigre et l'autre gros. Il est donc nécessaire de tenir compte de la capacité maximale d'une fourmis ($n$ pour une maigre, $2n$ pour une grosse) afin d'établir sa probabilité de donner et recevoir, soient les fonctions $P_R(i,capacite)$ et $P_D(i,capacite)$. Où $capacite$ vaut $n$ pour une fourmi maigre, $2n$ pour une grosse.\\
+
+On relie très facilement ces  probabilités à celles définies pour une population homogène:
+
+\begin{equation}
+P_{R,D}(i,capacite)=P_{R,D}(i*n/capacite)\\
+\end{equation}
+
+
+
+De manière similaire au chapitre 3, on retrouve alors les équations maîtresses pour chaque sous population.
+
+
+
+\begin{equation}
+\begin{aligned}
+\dot{X}_1(i,t) &= P_D(i+1,n) \tilde{\Sigma}_R(t) X_1(i+1,t) + P_R(i-1,n) \tilde{\Sigma}_D(t) X_1(i-1,t)\\
+					&-P_D(i,n) \tilde{\Sigma}_R(t) X_1(i,t) -P_R(i,n) \tilde{\Sigma}_D(t) X_1(i,t)\\
+\dot{X}_2(i,t) &= P_D(i+1,2n) \tilde{\Sigma}_R(t) X_2(i+1,t) + P_R(i-1,2n) \tilde{\Sigma}_D(t) X_2(i-1,t)\\
+					&-P_D(i,2n) \tilde{\Sigma}_R(t) X_2(i,t) -P_R(i,2n) \tilde{\Sigma}_D(t) X_2(i,t)\\				
+\end{aligned}
+\end{equation}
+pour $i = 1,...,n-1$.\\
+
+Et aux bords:
+
+\begin{equation}
+\begin{aligned}
+\dot{X_1}(0,t)&= P_D(1) \tilde{\Sigma}_R(t) X_1(1,t) - P_R(0) \tilde{\Sigma}_D(t) X_1(0,t)\\
+\dot{X_2}(0,t)&= P_D(1) \tilde{\Sigma}_R(t) X_2(1,t) - P_R(0) \tilde{\Sigma}_D(t) X_2(0,t)\\
+\label{bord0}
+\end{aligned}
+\end{equation}
+ et 
+\begin{equation}
+\begin{aligned}
+\dot{X_1}(n,t)&= P_R(n-1) \tilde{\Sigma}_D(t) X_1(n-1,t)- P_D(n) \tilde{\Sigma}_R(t) X_1(n,t)\\
+\dot{X_2}(n,t)&= P_R(n-1) \tilde{\Sigma}_D(t) X_2(n-1,t)- P_D(n) \tilde{\Sigma}_R(t) X_2(n,t)\\
+\label{bordN}
+\end{aligned}
+\end{equation}
+
+On a introduit comme au chapitre 3 les probabilités d'interagir avec un receveur ou un donneur:
+
+\begin{equation}
+\begin{aligned}
+\tilde{\Sigma}_R(t) = \sum_{i=0}^{2n} P_R(i,n) X_1(i,t)+ P_R(i,2n) X_2(i,t)\\
+\tilde{\Sigma}_D(t) = \sum_{i=0}^{2n} P_D(i,n) X_1(i,t)+ P_D(i,2n) X_2(i,t)\\			
+\end{aligned}
+\end{equation}
+
+
+
 \section{Simulations stochastiques}
 
-Introduire des capacités différentes ds le modèle, réécrire les équations.
+\begin{algorithm}
+\caption{Simulations stochastiques synchrones sur une population hétérogène.}
+\begin{algorithmic}
 
-\section{Dynamique vers des états ................}
+%\Function{evolution}{a}
+%\State $a \gets a+1$
+%\EndFunction
+\State Nb$_{Simul} \gets 10000$
+\State Nb$_{Indiv} \gets 1000$\\
 
-\section{Caractérisation des états .........}
+\State ChargeUnit $\gets 0.01$
+
+\State $Q_{tot} \gets 500$\\
+
+
+\State TF $\gets$ Table[$Nb_{Indiv}$][$Nb_{Simul}$]
+\State \textcolor{blue}{On crée un tableau TF, t.q. TF[i][j] contient la charge de l'individu i au temps j.\\
+Les $\frac{N}{2}$ premiers individus sont considérés comme maigres, les $\frac{N}{2}$ suivants sont gros.}\\
+\State TF $\gets$ InitialiseTF($Q_{tot}$)
+\State \textcolor{blue}{Initialise le tableau TF en distribuant la charge totale dans la population.}\\
+
+\For{tps $\gets 0, Nb_{Simul}$}
+	\State Indices $\gets$ shuffle(1,$Nb_{Indiv}$) 
+	\State \textcolor{blue}{Crée une liste contenant les entiers de 1 à $Nb_{Indiv}$ mélangés aléatoirement.}\\
+	\For{$i \gets 0, Nb_{Indiv}/2$}
+		\State k $\gets$ Indices[2i]
+		\State l $\gets$ Indices[2i+1] \\
+		
+		\State $x,y \gets random()$\\
+		
+		\State $l_1 \gets TF[k][tps]$
+		\State $l_2 \gets TF[l][tps]$\\
+		
+		\If{$x<P_R(l_1,capacite(k))$ , $y > P_R(l_2,capacite(l)) $}
+			\State don $\gets$ ChargeUnit 
+		\ElsIf{$x>P_R(l_1,capacite(k))$ , $y < P_R(l_2,capacite(k)) $}
+			\State don $\gets$ -ChargeUnit 
+		\Else
+			\State $don=0$
+		\EndIf \\
+		
+		\State $TF[k][tps+1] \gets TF[k][tps]+don$
+        \State $TF[l][tps+1] \gets TF[l][tps]-don$\\
+	\EndFor
+\EndFor
+
+
+
+\end{algorithmic}
+\end{algorithm}
+
+\section{Caractérisation des états stationnaires}
+
+\section{Dynamique vers des états stationnaires}
+
