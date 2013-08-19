@@ -3,13 +3,13 @@
 
 Nous avons jusqu'ici construit un modèle où tous les individus sont morphologiquement identiques, la seule distinction possible entre 2 fourmis étant la quantité de nourriture que chacune transporte. Sous ces considérations nous avons pu montrer par exemple que certaines lois comportementales conduisent à une séparation des rôles au sein de la population; une fraction de la population pouvant contenir la presque totalité de la  nourriture disponible.\\
 
-Néanmoins nous savons que les individus ne peuvent pas être exactement identiques; pour construire un modèle le plus réaliste possible il convient donc de considérer une distribution des paramètres intrinsèques (i.e. morphologiques) sur la population. L'intérêt de considérer des individus différents sera d'étudier l'impacte de ces différences sur la gestion de la nourriture. La colonie aura-t-elle tendance à stocker chez les individus les plus ``gros'' ou le plus ``maigre''? Ce choix dépend-il de la quantité de nourriture disponible? Une nouvelle fois nous choisissons de partir sans a priori et de construire un modèle qui considère l'ensemble des comportements possibles.\\
+Néanmoins nous savons que les individus ne peuvent pas être exactement identiques; pour construire un modèle le plus réaliste possible il convient donc de considérer une distribution des paramètres intrinsèques (i.e. morphologiques) sur la population. L'intérêt de considérer des individus différents sera d'étudier l'impact de ces différences sur la gestion de la nourriture. La colonie aura-t-elle tendance à stocker chez les individus les plus ``gros'' ou les plus ``maigres''? Ce choix dépend-il de la quantité de nourriture disponible? Une nouvelle fois nous choisissons de partir sans a priori et de construire un modèle qui considère l'ensemble des comportements possibles.\\
 
 Ce chapitre se veut être une première approche de l'étude de la dynamique d'échange pour une population hétérogène. Nous y considérons des individus différentiables par le volume maximal de nourriture pouvant être transporté, c'est à dire par la taille de leur abdomen ou plus exactement de leur jabot social. Parmi toutes les distributions possibles des tailles d'abdomen sur la population nous choisissons de considérer uniquement   2 sous-populations de $\frac{N}{2}$ individus, l'une possédant des abdomens $2$ fois plus volumineux que l'autre.
 
 \section{Modification du modèle}
 
-Nous allons donc considérer une sous population de fourmis ``maigres'' et une de fourmis ``grosses''; le volume maximal de transport étant 2 fois plus important chez les grosses. \\
+Nous allons donc considérer une sous-population de fourmis ``maigres'' et une de fourmis ``grosses''; le volume maximal de transport étant 2 fois plus important chez les grosses. \\
 
 A nouveau nous considérons la charge transportée par une fourmi, définie comme $l=\frac{V_{transport\'{e}}}{V_{max}}$ où $V_{max}$ est le volume du jabot social des fourmis ``grosses''. On comprend déjà que la charge d'une fourmi ``maigre'' variera entre $0$ et $\frac{1}{2}$, alors que celle d'une fourmi ``grosse'' variera entre $0$ et $1$.\\
 
@@ -26,7 +26,7 @@ Les individus ``maigres'' étant aussi nombreux que les ``gros'':
 (Il est à noter que les états $i=n+1,...,2n$ sont inaccessibles pour la population de maigres: $X_1(i,t)=0$ sur ces états.)\\
 
 
-Les mécanismes d'échange sont similaires à ceux présentés au chapitre 2, et une fourmi choisira toujours de recevoir ou de donner de la nourriture sur base de son propre taux de remplissage. Ceci dit, dans le cadre d'une population hétérogène, 2 individus transportant un même volume de nourriture peuvent avoir des taux de remplissage différents si l'un est maigre et l'autre gros. Il est donc nécessaire de tenir compte de la capacité maximale d'une fourmis ($n$ pour une maigre, $2n$ pour une grosse) afin d'établir sa probabilité de donner et recevoir, soient les fonctions $P_R(i,capacite)$ et $P_D(i,capacite)$. Où $capacite$ vaut $n$ pour une fourmi maigre, $2n$ pour une grosse.\\
+Les mécanismes d'échange sont similaires à ceux présentés au chapitre 2, et une fourmi choisira toujours de recevoir ou de donner de la nourriture sur base de son propre taux de remplissage. Ceci dit, dans le cadre d'une population hétérogène, 2 individus transportant un même volume de nourriture peuvent avoir des taux de remplissage différents si l'un est maigre et l'autre gros. Il est donc nécessaire de tenir compte de la capacité maximale d'une fourmi ($n$ pour une maigre, $2n$ pour une grosse) afin d'établir sa probabilité de donner et recevoir, soient les fonctions $P_R(i,capacite)$ et $P_D(i,capacite)$, où $capacite$ vaut $n$ pour une fourmi maigre et $2n$ pour une grosse.\\
 
 On relie très facilement ces  probabilités à celles définies pour une population homogène:
 
@@ -37,7 +37,7 @@ P_{R,D}(i,capacite)=P_{R,D}(i*n/capacite)\\
 
 
 
-De manière similaire au chapitre 3, on retrouve alors les équations maîtresses pour chaque sous population. (Le développement étant parfaitement similaire à celui de la section 3.3, nous ne le répétons pas ici.)
+De manière similaire au chapitre 3, on retrouve alors les équations maîtresses pour chaque sous-population. (Le développement étant parfaitement similaire à celui de la section 3.3, nous ne le répétons pas ici.)
 
 
 
@@ -79,7 +79,7 @@ On a introduit comme au chapitre 3 les probabilités d'interagir avec un receveu
 \end{aligned}
 \end{equation}
 
-Les équations \ref{maitressebis}, \ref{bord0bis} et \ref{bordNbis} donnent l'évolution temporelle des distributions des 2 sous populations dans l'espace des charges, les intégrer numériquement nous permettrait de connaître à chaque instant la répartition de nourriture au sein de la colonie. Néanmoins on constate que les équations pour $X_1$ et $X_2$ sont couplées via les termes $\tilde{\Sigma}_R$ et $\tilde{\Sigma}_D$. Résoudre entièrement ce système d'équations devient vite laborieux et nous choisirons de recourir à nouveau à des simulations stochastiques pour notre étude.
+Les équations \ref{maitressebis}, \ref{bord0bis} et \ref{bordNbis} donnent l'évolution temporelle des distributions des 2 sous-populations dans l'espace des charges, les intégrer numériquement nous permettrait de connaître à chaque instant la répartition de nourriture au sein de la colonie. Néanmoins on constate que les équations pour $X_1$ et $X_2$ sont couplées via les termes $\tilde{\Sigma}_R$ et $\tilde{\Sigma}_D$. Résoudre entièrement ce système d'équations devient vite laborieux et nous choisirons de recourir à nouveau à des simulations stochastiques pour notre étude.
 
 \section{Simulations stochastiques}
 
@@ -87,7 +87,7 @@ Comme annoncé, nous recourons à des simulations stochastiques d'échanges de n
 
 A l'instar du chapitre précédent, nous focaliserons notre étude sur 4 lois comportementales qualitativement différentes présentées et discutées au chapitre 4. La possibilité d'introduire la capacité maximale de charge d'une fourmis dans ces lois comportementales est donnée par l'équation \ref{loi_capacite}. \\ 
 
-Les simulations introduites ici sont similaires à celles utilisées dans le cadre d'une population homogène, à cela près qu'il faut dorénavant tenir compte de la capacité maximal des individus. A nouveau, nous considérons $N$ individus initialement chargés qui tenteront des échanges d'une gouttelette de nourriture à chaque pas de temps avec un partenaire choisi aléatoirement.\\
+Les simulations introduites ici sont similaires à celles utilisées dans le cadre d'une population homogène, à cela près qu'il faut dorénavant tenir compte de la capacité maximale des individus. A nouveau, nous considérons $N$ individus initialement chargés qui tenteront des échanges d'une gouttelette de nourriture à chaque pas de temps avec un partenaire choisi aléatoirement.\\
 
 L'algorithme de simulation est présenté en pseudo code à la page suivante. \\
 
@@ -103,14 +103,14 @@ L'algorithme de simulation est présenté en pseudo code à la page suivante. \\
 \State Nb$_{Simul} \gets 10000$
 \State Nb$_{Indiv} \gets 1000$\\
 
-\State ChargeUnit $\gets 0.01$
+\State n $\gets 100$
+\State $Q_{tot} \gets 50$\\
 
-\State $Q_{tot} \gets 500$\\
+\State ChargeUnit $\gets 1./n$\\
 
 
 \State TF $\gets$ Table[$Nb_{Indiv}$][$Nb_{Simul}$]
-\State \textcolor{blue}{On crée un tableau TF, t.q. TF[i][j] contient la charge de l'individu i au temps j.\\
-Les $\frac{N}{2}$ premiers individus sont considérés comme maigres, les $\frac{N}{2}$ suivants sont gros.}\\
+\State \textcolor{blue}{On crée un tableau TF, t.q. TF[i][j] contient la charge de l'individu i au temps j.}\\
 \State TF $\gets$ InitialiseTF($Q_{tot}$)
 \State \textcolor{blue}{Initialise le tableau TF en distribuant la charge totale dans la population.}\\
 
@@ -144,6 +144,16 @@ Les $\frac{N}{2}$ premiers individus sont considérés comme maigres, les $\frac
 \end{algorithmic}
 \end{algorithm}
 
+Remarques:
+\begin{itemize}
+\item[$\bullet$]La quantité totale de nourriture dans la population notée $Q$ est définie par la charge moyenne des individus. Une quantité de nourriture $Q=25$ correspond à une charge moyenne par individu de 25 unités $\Delta l$.
+\item[$\bullet$]Dans le tableau TF, les $\frac{N}{2}$ premiers individus sont considérés comme maigres, les $\frac{N}{2}$ suivants sont gros.
+\item[$\bullet$]La fonction InitialiseTF distribue la quantité totale de nourriture $Q$ au sein de la population pour le premier pas de temps.
+\item[$\bullet$]La fonction capacite(k) retourne $n$ si $0<k\leq\frac{N}{2}$, $2n$ si $\frac{N}{2}< k \leq N$ .
+\end{itemize}
+
+
+
 \pagebreak
 
 \section{Caractérisation des états stationnaires}
@@ -151,27 +161,27 @@ Les $\frac{N}{2}$ premiers individus sont considérés comme maigres, les $\frac
 \subsection{Dépendance des conditions initiales}
 Dans le cas d'une population homogène nous avions montré que la distribution stationnaire était indépendante de la distribution initiale (voir section 3.4). Malheureusement la complexité des équations pour une population hétérogène nous empêche de retrouver ce résultat analytiquement. Un premier point crucial dans la caractérisation des états stationnaires sera donc de vérifier la dépendance (ou la non dépendance) de la distribution stationnaire sur la distribution initiale.\\
 
-On considère donc une certaine quantité de nourriture répartie de 2 manières différentes dans la population. Dans un premier temps on choisira de ne remplir initialement que la sous population maigre, et dans un second temps la sous population grosse. Une manière simple et efficace de mettre en évidence la dépendance des conditions initiales (i.e. la distribution initiale) serait de montrer que ces 2 répartitions de nourriture initiales mènent à des distributions stationnaires différentes. \\
+On considère donc une certaine quantité de nourriture répartie de 2 manières différentes dans la population. Dans un premier temps on choisira de ne remplir initialement que la sous-population maigre, et dans un second temps la sous-population grosse. Une manière simple et efficace de mettre en évidence la dépendance des conditions initiales (i.e. la distribution initiale) serait de montrer que ces 2 répartitions de nourriture initiales mènent à des distributions stationnaires différentes. \\
 
-Nous effectuons donc 2 simulations aux conditions initiales différentes, et ce pour 2 lois d'échanges différentes: antilinéaire et vague. Les résultats sont repris aux figures \ref{comparaison_CI_anti} et \ref{comparaison_CI_vague}\\
+Nous effectuons donc 2 simulations aux conditions initiales différentes, et ce pour 2 lois d'échange différentes: antilinéaire et vague. Les résultats sont repris aux figures \ref{comparaison_CI_anti} et \ref{comparaison_CI_vague}.\\
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.35]{Figures/Heterogene/crop_comparaisonCI_anti.pdf}
-\caption{Comparaison des distributions stationnaires pour 2 distributions initiales différentes, dans le cadre de la loi antilinéaire. A gauche seule la sous population maigre a été initialement chargée, à droite la population grosse. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 20 simulations.}
+\includegraphics[scale=0.4]{Figures/Heterogene/crop_comparaisonCI_anti.pdf}
+\caption{Comparaison des distributions stationnaires pour 2 distributions initiales différentes d'une même quantité de nourriture, dans le cadre de la loi antilinéaire. A gauche seule la sous-population maigre a été initialement chargée, à droite la population grosse. Paramètres des simulations: $10000$ individus, $n=100$, $Q = 50$. Courbes moyennées sur 20 simulations.}
 \label{comparaison_CI_anti}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.35]{Figures/Heterogene/crop_comparaisonCI_vague.pdf}
-\caption{Comparaison des distributions stationnaires pour 2 distributions initiales différentes, dans le cadre de la loi vague. A gauche seule la sous population maigre a été initialement chargée, à droite la population grosse. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 20 simulations.}
+\includegraphics[scale=0.4]{Figures/Heterogene/crop_comparaisonCI_vague.pdf}
+\caption{Comparaison des distributions stationnaires pour 2 distributions initiales différentes d'une même quantité de nourriture, dans le cadre de la loi vague. A gauche seule la sous-population maigre a été initialement chargée, à droite la population grosse. Paramètres des simulations: $10000$ individus, $n=100$, $Q = 50$. Courbes moyennées sur 20 simulations.}
 \label{comparaison_CI_vague}
 \end{figure}
 
 On remarque que dans les 2 cas représentés ici, les distributions stationnaires varient avec la distribution initiale. Contrairement à une population homogène, les conditions initiales peuvent donc influencer l'état stationnaire si la population est hétérogène.\\
 
-Dans la suite de cette section nous allons considérer uniquement 3 types de distributions initiales, chacune étant biologiquement cohérente:
+Dans la suite de cette section nous allons considérer uniquement 3 types de distributions initiales, chacune étant bio-inspirée:
 \begin{enumerate}
 \item Une distribution initiale où la population maigre sera prioritairement chargée, càd qu'une fourmi grosse ne pourra être initialement chargée que si toutes les fourmis maigres sont pleines.
 \item Une distribution initiale où la population grosse sera prioritairement chargée, càd qu'une fourmi maigre ne pourra être initialement chargée que si toutes les fourmis grosses sont pleines.
@@ -179,7 +189,7 @@ Dans la suite de cette section nous allons considérer uniquement 3 types de dis
 \end{enumerate}
 
 
-Sur base des simulations stochastiques, nous allons donc pouvoir comparer les distributions stationnaires pour chacune des 4 lois comportementales étudiées et à chaque fois 3 distributions initiales différentes.
+Sur base des simulations stochastiques, nous allons donc pouvoir comparer les distributions de population stationnaires pour chacune des 4 lois comportementales étudiées et à chaque fois les 3 distributions initiales différentes. Nous nous intéresserons également, dans chacun des cas, à la quantité de nourriture transportée par chaque sous population.
 
 \pagebreak
 \subsection{Loi Constante}
@@ -188,97 +198,141 @@ Sur base des simulations stochastiques, nous allons donc pouvoir comparer les di
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_cste_MF.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange constante. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 1, privilégiant les individus maigres. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange constante. La distribution initiale considérée est la distribution 1, privilégiant les individus maigres. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_cste_MF}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_cste_GF.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange constante. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 2, privilégiant les individus gros. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange constante. La distribution initiale considérée est la distribution 2, privilégiant les individus gros. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_cste_GF}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_cste_mixte.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange constante. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 3, indifférente de la capacité des individus. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange constante. La distribution initiale considérée est la distribution 3, indifférente de la capacité des individus. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_cste_mixte}
 \end{figure}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Figures/Heterogene/crop_Qsouspop_cste.pdf}
+\caption{Répartition de la nourriture au sein des 2 sous-populations à l'état stationnaire pour 8 quantités de nourriture différentes, dans le cadre du modèle constant. A gauche la distribution initiale 1, au milieu la d.i. 2, à droite la d.i. 3. Histogrammes moyennés sur 10 simulations.}
+\label{Qsouspop_cste}
+\end{figure}
 
-\pagebreak
+
+La distribution stationnaire dans le cadre du modèle constant semble indépendante de la distribution initiale. On observe un étalement de la distribution de population dans l'espace des charges, modulé par la quantité de nourriture disponible. Pour de faibles quantités de nourriture les 2 sous-populations partagent équitablement leur denrée, mais la population de grosses tend à s'enrichir quand la nourriture disponible augmente.
+
+\clearpage
+
 \subsection{Loi Linéaire}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_lin_MF.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange linéaire. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 1, privilégiant les individus maigres. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange linéaire. La distribution initiale considérée est la distribution 1, privilégiant les individus maigres. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_lin_MF}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_lin_GF.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange linéaire. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 2, privilégiant les individus gros. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange linéaire. La distribution initiale considérée est la distribution 2, privilégiant les individus gros. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_lin_GF}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_lin_mixte.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange linéaire. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 3, indifférente de la capacité des individus. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange linéaire. La distribution initiale considérée est la distribution 3, indifférente de la capacité des individus. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_lin_mixte}
 \end{figure}
 
-\pagebreak
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Figures/Heterogene/crop_Qsouspop_lin.pdf}
+\caption{Répartition de la nourriture au sein des 2 sous-populations à l'état stationnaire pour 8 quantités de nourriture différentes, dans le cadre du modèle linéaire. A gauche la distribution initiale 1, au milieu la d.i. 2, à droite la d.i. 3. Histogrammes moyennés sur 10 simulations.}
+\label{Qsouspop_lin}
+\end{figure}
+
+La distribution stationnaire dans le cadre du modèle linéaire semble indépendante de la distribution initiale. On observe une concentration des sous-populations chacune autour d'une charge critique proportionnelle à la quantité de nourriture disponible. La quantité de nourriture stockée par la population grosse est $2$ fois plus importante que celle stockée par la population maigre.
+
+
+
+\clearpage
+
 \subsection{Loi Antilinéaire}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_anti_MF.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange anti linéaire. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 1, privilégiant les individus maigres. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange anti linéaire. La distribution initiale considérée est la distribution 1, privilégiant les individus maigres. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_anti_MF}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_anti_GF.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange anti linéaire. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 2, privilégiant les individus gros. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange anti linéaire. La distribution initiale considérée est la distribution 2, privilégiant les individus gros. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_anti_GF}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_anti_mixte.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange anti linéaire. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 3, indifférente de la capacité des individus. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange anti linéaire. La distribution initiale considérée est la distribution 3, indifférente de la capacité des individus. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_anti_mixte}
 \end{figure}
 
-\pagebreak
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Figures/Heterogene/crop_Qsouspop_anti.pdf}
+\caption{Répartition de la nourriture au sein des 2 sous-populations à l'état stationnaire pour 8 quantités de nourriture différentes, dans le cadre du modèle antilinéaire. A gauche la distribution initiale 1, au milieu la d.i. 2, à droite la d.i. 3. Histogrammes moyennés sur 10 simulations.}
+\label{Qsouspop_anti}
+\end{figure}
+
+La distribution stationnaire dans le cadre du modèle antilinéaire est directement liée à la distribution initiale. On observe que certains individus sont très remplis ou complètement vides; ce sont les individus initialement les plus chargés qui finiront les plus remplis, d'où la dépendance en la distribution initiale.
+
+
+\clearpage
+
 \subsection{Loi Vague}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_vague_MF.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange vague. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 1, privilégiant les individus maigres. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange vague. La distribution initiale considérée est la distribution 1, privilégiant les individus maigres. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_vague_MF}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_vague_GF.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange vague. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 2, privilégiant les individus gros. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange vague. La distribution initiale considérée est la distribution 2, privilégiant les individus gros. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_vague_GF}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.35]{Figures/Heterogene/crop_statio_vague_mixte.pdf}
-\caption{Distribution stationnaire des 2 sous populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange vague. La valeur de $Q$ correspond au nombre moyen de gouttelettes $\Delta l$ par individu. La distribution initiale considérée est la distribution 3, indifférente de la capacité des individus. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
+\caption{Distribution stationnaire des 2 sous-populations dans l'espace des charges pour différentes quantités de nourriture $Q$ répartie dans la population, dans le cadre d'une loi d'échange vague. La distribution initiale considérée est la distribution 3, indifférente de la capacité des individus. Paramètres des simulations: $10000$ individus, $n=100$. Courbes moyennées sur 10 simulations.}
 \label{statio_vague_mixte}
 \end{figure}
 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Figures/Heterogene/crop_Qsouspop_vague.pdf}
+\caption{Répartition de la nourriture au sein des 2 sous-populations à l'état stationnaire pour 8 quantités de nourriture différentes, dans le cadre du modèle vague. A gauche la distribution initiale 1, au milieu la d.i. 2, à droite la d.i. 3. Histogrammes moyennés sur 10 simulations.}
+\label{Qsouspop_vague}
+\end{figure}
+
+Le modèle vague montre une sensibilité aux conditions initiales, toutefois moins marquée que dans le cas du modèle antilinéaire. A l'instar des populations homogènes, on observe au sein des 2 sous-populations une bimodalité présente pour de faibles quantités de nourriture disponible. Point intéressant de ce modèle, quelque soit la distribution initiale, pour de faibles quantités de nourriture les échanges vont favoriser les individus les plus maigres, mais quand la nourriture disponible devient plus importante ceux-ci vont se décharger au profit des plus gros. Ce comportement s'apparente au principe de stockage, où on ne chargera les gros individus que si la quantité de nourriture est suffisante pour constituer des stocks.
 
 \section{Dynamique vers les états stationnaires}
 

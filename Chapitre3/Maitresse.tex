@@ -198,10 +198,10 @@ Ceci dit nous avons imposé la conservation du nombre d'individus et de la charg
 		\end{equation}
 \end{itemize}
 
-Nous arrivons donc à un système complet d'équations, qui nous permet d'exprimer univoquement la distribution X(i).\\
+Nous arrivons donc à un système complet d'équations, qui nous permet d'exprimer univoquement la distribution $X(i)$. Ce résultat est fort, nous venons de montrer qu'en fixant la quantité de nourriture disponible et le nombre d'individus nous connaissons la distribution stationnaire de population dans l'espace des charges; ce qui signifie que l'état stationnaire est indépendant de la manière dont la nourriture est initialement répartie au sein de la population (i.e. des conditions initiales).\\
 
 
-Pour aller plus loin dans le calcul exacte des distributions d'équilibre il est nécessaire de connaître explicitement les valeurs de $P_R$ et $P_D$. Nous l'effectuerons pour chacune des 4 lois étudiées.
+Pour aller plus loin dans le calcul exact des distributions d'équilibre il est nécessaire de connaître explicitement les valeurs de $P_R$ et $P_D$. Nous l'effectuerons pour chacune des 4 lois étudiées.
 
 
 \subsection{Loi constante}
@@ -215,8 +215,7 @@ P_D(i) &= 0.5
 \end{aligned}
 \right.
 \end{equation}
-
-avec les conditions aux bords habituelles.\\
+pour $i=1,...,n-1$ avec les conditions aux bords \ref{ConditionsBordsProbabilite} pour i=0 et i=n.\\
 
 La distribution stationnaire pour la loi constante vaut alors:
 
@@ -268,17 +267,18 @@ Cette relation est très délicate à inverser, néanmoins nous pouvons obtenir 
 \label{AlphavsQCste}
 \end{figure}
 
-A quantité de nourriture fixée, le coefficient $\alpha$ est univoquement déterminé. La distribution croit exponentiellement avec la charge pour une quantité de nourriture supérieur à $50\%$ de la capacité de la population et décroit pour une quantité supérieur à $50\%$.
+A quantité de nourriture fixée, le coefficient $\alpha$ est univoquement déterminé. Une première interprétation de ce graphique est que la distribution croit exponentiellement avec la charge pour une quantité de nourriture supérieure à $50\%$ de la capacité de la population et décroit pour une quantité inférieure à $50\%$.
 
 
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.3]{Figures/Maitresse/Loi_cste.pdf}
-\caption{Distribution stationnaire normalisée de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``constant''. Les quantités de nourriture correspondent à $10, 25, 35, 50, 65, 75\%$ de la capacité maximale de stock de la colonie. $N=10000; \Delta l = 0.01$}
+\caption{Distribution stationnaire normalisée de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``constant''. Les quantités de nourriture correspondent à $10, 25, 35, 50, 65, 75\%$ de la capacité maximale de stock de la colonie. $N=10000; n=100$}
 \label{DistribAnalytiqueCste}
 \end{figure}
 
+On observe un étalement de la distribution sur l'espace des charges, moyenné par la quantité de nourriture disponible.
 
 \subsection{Loi linéaire}
 Les probabilités $P_R$ et $P_D$ sont données par:
@@ -312,7 +312,7 @@ X_{tot}=1&=\sum_{i=0}^{n}X_0\alpha^i\binom{n}{i}\\
 \end{equation}
 donc
 \begin{equation}
-X_0 = X_{tot}/(1+\alpha)^n
+X_0 = X_{tot}/(1+\alpha)^n=1/(1+\alpha)^n
 \end{equation}
 
 Du coup:
@@ -347,16 +347,17 @@ np(1-p) &= Q(1-p)\\
 \end{aligned}
 \end{equation}
 
-La distribution de population dans l'espace des charge est donc une gaussienne centrée sur la charge moyenne. La largeur de la gaussienne est maximale quand les individus sont en moyenne à moitié chargés $(Q=n/2)$, et s'annule bien quand ceux-ci sont tous vides $(Q=0)$ ou tous remplis $(Q=N)$.
+La distribution de population dans l'espace des charges est donc une gaussienne centrée sur la charge moyenne. La largeur de la gaussienne est maximale quand les individus sont en moyenne à moitié chargés $(Q=n/2)$, et s'annule bien quand ceux-ci sont tous vides $(Q=0)$ ou tous remplis $(Q=n)$.
 
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.3]{Figures/Maitresse/Loi_lineaire.pdf}
-\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``linéaire''. $N=10000; \Delta l = 0.01$}
+\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``linéaire''. $N=10000; n=100$}
 \label{DistribAnalytiqueLin}
 \end{figure}
 
+On observe une concentration de la population autour d'une charge critique qui est la charge moyenne par individu.
 
 
 
@@ -372,7 +373,7 @@ P_D(i) &= \frac{n-i}{n}
 \right.
 \end{equation}
 
-avec les conditions aux bords \ref{ConditionsBordsProbabilite}.\\
+pour $i=1,...,n-1$ avec les conditions aux bords \ref{ConditionsBordsProbabilite} pour i=0 et i=n.\\
 
 La distribution de l'état stationnaire est donnée par l'équation \ref{expression_Xi} et vaut alors pour la loi antilinéaire:
 
@@ -396,9 +397,11 @@ La complexité analytique de cette distribution nous empêche d'aller très loin
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.3]{Figures/Maitresse/Loi_antilineaire.pdf}
-\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``antilinéaire''. $N=10000; \Delta l = 0.01$}
+\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``antilinéaire''. $N=10000, n=100$}
 \label{DistribAnalytiqueAnti}
 \end{figure}
+
+On observe une distribution bimodale où les individus sont soient complètement chargés, soient vides. Ce modèle antilinéaire montre donc que la dynamique des échanges peut entraîner une séparation des rôles au sein d'une population d'individus identiques, seule une fraction de la population stocke la totalité de la nourriture.
 
 
 \subsection{Loi vague}
@@ -413,7 +416,7 @@ P_D(i) &= 2(\frac{i}{n})^2-1.5\frac{i}{n}+0.5
 \right.
 \end{equation}
 
-avec les conditions aux bords \ref{ConditionsBordsProbabilite}.\\
+pour $i=1,...,n-1$ avec les conditions aux bords \ref{ConditionsBordsProbabilite} pour i=0 et i=n.\\
 
 La distribution de l'état stationnaire donnée par l'équation \ref{expression_Xi} et les lois de conservation est inexploitable analytiquement. On recourt immédiatement à une analyse numérique pour retrouver la distribution stationnaire.
 
@@ -421,7 +424,8 @@ La distribution de l'état stationnaire donnée par l'équation \ref{expression_
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.3]{Figures/Maitresse/Loi_vague.pdf}
-\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``vague''. $N=10000; \Delta l = 0.01$}
+\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``vague''. $N=10000; n=100$}
 \label{DistribAnalytiqueVague}
 \end{figure}
 
+On observe à nouveau une distribution bimodale pour de faibles quantités de nourriture, et donc à nouveau une séparation des rôles engendrée par la dynamique d'échange. Pour de plus grandes quantité de nourriture la bimodalité est abandonnée, la distribution se concentre autour de la charge moyenne par individu.

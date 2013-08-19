@@ -2,7 +2,7 @@
 \section{Simulations stochastiques}
 En plus de l'analyse analytique jusqu'ici considérée, nous pouvons étudier la dynamique sur base de simulations stochastiques. Cette approche nous permettra d'étudier de nouveaux aspects relevants pour la dynamique, puisque l'équation maîtresse ne représente pas le caractère stochastique des échanges.\\
 
-Dans un premier temps ces simulations serviront de contrôle pour nos calculs théoriques effectués au chapitre précédent, on s'assurera que les distributions d'équilibre atteintes par simulation soient bien identiques aux distributions calculées analytiquement. Dans un second temps, ces simulations nous permettront d'obtenir de nouveaux résultats plus compliqués, voir impossible(s?) à retrouver analytiquement, comme l'étude de l'ergodicité du système (présentée plus bas) ou la détermination d'un temps caractéristique de retour à l'équilibre.\\
+Dans un premier temps ces simulations serviront de contrôle pour nos calculs théoriques effectués au chapitre précédent, on s'assurera que les distributions d'équilibre atteintes par simulation soient bien identiques aux distributions calculées analytiquement. Dans un second temps, ces simulations nous permettront d'obtenir de nouveaux résultats plus compliqués, voire impossibles à retrouver analytiquement, comme l'étude de l'ergodicité du système (présentée plus bas) ou la détermination d'un temps caractéristique de retour à l'équilibre.\\
 
 Les simulations introduites ici considèrent $N$ individus chargés, qui tenteront des échanges d'une unité de charge avec un partenaire choisi aléatoirement. Bien entendu, les probabilités d'échange sont définies comme au chapitre 2 et la quantité de nourriture répartie dans la population, comme le nombre d'individus, sont des grandeurs conservées pendant la simulation.\\
 
@@ -28,10 +28,11 @@ Les algorithmes des 2 simulations sont présentés en pseudo code aux pages suiv
 \State Nb$_{Simul} \gets 10000$
 \State Nb$_{Indiv} \gets 1000$\\
 
-\State ChargeUnit $\gets 0.01$
 
-\State $Q_{tot} \gets 500$\\
+\State $n \gets 100$
+\State $Q_{tot} \gets 50$\\
 
+\State ChargeUnit $\gets 1./n$\\
 
 \State TF $\gets$ Table[$Nb_{Indiv}$][$Nb_{Simul}$]
 \State \textcolor{blue}{On crée un tableau TF, t.q. TF[i][j] contient la charge de l'individu i au temps j.}\\
@@ -69,7 +70,6 @@ Les algorithmes des 2 simulations sont présentés en pseudo code aux pages suiv
 \end{algorithm}
 
 
-
 \clearpage
 
 \begin{algorithm}
@@ -82,9 +82,10 @@ Les algorithmes des 2 simulations sont présentés en pseudo code aux pages suiv
 \State $Nb_{Simul} \gets 5 000 000$
 \State $Nb_{Indiv} \gets 1000$\\
 
-\State ChargeUnit $\gets 0.01$
+\State $n \gets 100$
+\State $Q_{tot} \gets 50$\\
 
-\State $Q_{tot} \gets 500$\\
+\State ChargeUnit $\gets 1./n$\\
 
 
 \State TF $\gets$ Table[$Nb_{Indiv}$][$Nb_{Simul}$]
@@ -123,6 +124,15 @@ Les algorithmes des 2 simulations sont présentés en pseudo code aux pages suiv
 \end{algorithmic}
 \end{algorithm}
 
+
+Remarques:
+\begin{itemize}
+\item[$\bullet$]La quantité totale de nourriture dans la population notée $Q$ est définie par la charge moyenne des individus. Une quantité de nourriture $Q=25$ correspond à une charge moyenne par individu de 25 unités $\Delta l$.
+\item[$\bullet$]La fonction InitialiseTF distribue la quantité totale de nourriture $Q$ au sein de la population pour le premier pas de temps.
+\end{itemize}
+
+\clearpage
+
 \subsection{Équivalence des simulations}
 
 Comme annoncé, nous montrons ici que les simulations synchrones et asynchrones sont identiques moyennant un facteur de conversion des échelles temporelles, et représentent donc la même dynamique. Chaque pas de temps de la simulation synchrone génère $\frac{N}{2}$ interactions, contre $1$ pour la simulation asynchrone; on s'attend donc à un facteur de conversion $\frac{N}{2}$.\\
@@ -154,14 +164,14 @@ Nous comparons le moment d'ordre 2 mesuré sur chacune des simulations pour 2 lo
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.35]{Figures/Homogene/crop_M2_cste_Q2050.pdf}
-\caption{Comparaison des simulations synchrones et asynchrones dans le cadre de la loi constante, pour des quantité de nourriture correspondantes à $20\%$ (à gauche) et $50\%$(à droite) de la capacité maximale de la population. On a converti l'échelle de temps des simulations synchrones d'un facteur $\frac{N}{2}$. Paramètres: $N=500$, $\Delta l = 1\%$. Courbes moyennées sur 20 simulations.}
+\caption{Comparaison des simulations synchrones et asynchrones dans le cadre de la loi constante, pour des quantité de nourriture correspondantes à $20\%$ (à gauche) et $50\%$(à droite) de la capacité maximale de la population. On a converti l'échelle de temps des simulations synchrones d'un facteur $\frac{N}{2}$. Paramètres: $N=500$ individus, $n = 100$. Courbes moyennées sur 20 simulations.}
 \label{EquivalenceCste}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.35]{Figures/Homogene/crop_M2_anti_Q2050.pdf}
-\caption{Comparaison des simulations synchrones et asynchrones dans le cadre de la loi antilinéaire, pour des quantité de nourriture correspondantes à $20\%$ (à gauche) et $50\%$(à droite) de la capacité maximale de la population. On a converti l'échelle de temps des simulations synchrones d'un facteur $\frac{N}{2}$. Paramètres: $N=500$, $\Delta l = 1\%$. Courbes moyennées sur 20 simulations.}
+\caption{Comparaison des simulations synchrones et asynchrones dans le cadre de la loi antilinéaire, pour des quantité de nourriture correspondantes à $20\%$ (à gauche) et $50\%$(à droite) de la capacité maximale de la population. On a converti l'échelle de temps des simulations synchrones d'un facteur $\frac{N}{2}$. Paramètres: $N=500$ individus, $n = 100$. Courbes moyennées sur 20 simulations.}
 \label{EquivalenceAnti}
 \end{figure}
 
@@ -172,33 +182,33 @@ Dans tous les cas, les courbes obtenues via les simulations synchrones et celles
 
 Maintenant que nous savons que les simulations synchrones et asynchrones sont équivalentes, nous pouvons nous contenter d'utiliser les simulations synchrones pour la suite du travail. \\
 
-Le premier intérêt de nos simulations est de s'en servir comme contrôle du modèle analytique proposé au chapitre précédent. Nous allons donc nous assurer que les distributions stationnaires obtenues via les simulations correspondent à celles calculées analytiquement sur base du modèle au chapitre 5. La comparaison sera faites pour chaque loi, et à chaque fois pour 6 quantités de nourriture différentes. Les résultats sont repris aux figures \ref{ComparaisonMScste}, \ref{ComparaisonMSlineaire}, \ref{ComparaisonMSanti} et \ref{ComparaisonMSvague}.
+Le premier intérêt de nos simulations est de s'en servir comme contrôle du modèle analytique proposé au chapitre précédent. Nous allons donc nous assurer que les distributions stationnaires obtenues via les simulations correspondent à celles calculées analytiquement sur base du modèle au chapitre 5. La comparaison sera faite pour chaque loi, et à chaque fois pour 6 quantités de nourriture différentes. Les résultats sont repris aux figures \ref{ComparaisonMScste}, \ref{ComparaisonMSlineaire}, \ref{ComparaisonMSanti} et \ref{ComparaisonMSvague}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.35]{Figures/Homogene/crop_ComparaisonMScste.pdf}
-\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi constante pour 6 quantités de nourritures différentes.}
+\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi constante pour 6 quantités de nourriture différentes. Paramètres de simulations: $10000$ individus, $n=100$.}
 \label{ComparaisonMScste}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.35]{Figures/Homogene/crop_ComparaisonMSlineaire.pdf}
-\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi linéaire pour 6 quantités de nourritures différentes.}
+\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi linéaire pour 6 quantités de nourriture différentes. Paramètres de simulations: $10000$ individus, $n=100$.}
 \label{ComparaisonMSlineaire}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.35]{Figures/Homogene/crop_ComparaisonMSanti.pdf}
-\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi antilinéaire pour 6 quantités de nourritures différentes.}
+\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi antilinéaire pour 6 quantités de nourriture différentes. Paramètres de simulations: $10000$ individus, $n=100$.}
 \label{ComparaisonMSanti}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.35]{Figures/Homogene/crop_ComparaisonMSvague.pdf}
-\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi vague pour 6 quantités de nourritures différentes.}
+\caption{Comparaison des distributions stationnaires obtenues via les simulations aux distributions analytiques du modèle, dans le cadre d'une loi vague pour 6 quantités de nourriture différentes. Paramètres de simulations: $10000$ individus, $n=100$.}
 \label{ComparaisonMSvague}
 \end{figure}
 
@@ -243,9 +253,9 @@ Une première observation est que la courbe $\mu_{\tau}(i)$ correspond à la dis
 \end{aligned}
 \end{equation}
 
-La grandeur relevante ici est l'écart-type des fréquences d'occupation des états, pris sur la population. Cette grandeur caractérise la différentiabilité des individus, elle atteint 0 quand toutes les fourmis ont occupé chaque état avec la même fréquence et est d'autant plus grand que les fourmis ont tendance à ``stagner'' dans leur état.  \\
+La grandeur relevante ici est l'écart-type des fréquences d'occupation des états, pris sur la population. Cette grandeur caractérise la différentiabilité des individus, elle atteint 0 quand toutes les fourmis ont occupé chaque état avec la même fréquence et est d'autant plus grande que les fourmis ont tendance à ``stagner'' dans leur état.  \\
 
-Nous nous intéressons donc à la dépendance en $\tau$ de cette grandeur. Nous illustrons dans un premier temps cette dépendance en observant la variation de l'écart-type pour 3 valeurs de $\tau: 500, 1000$ et $5000$. On porte donc en graphique l'écart à la distribution moyenne (i.e. stationnaire) dans l'espace des charges pour 2 lois différentes (constante et vague), voir figures \ref{ergo_cste} et \ref{ergo_vague}. Comme attendu l'écart-type diminue quand $\tau$ augmente; en effet, au plus le nombre d'interactions augmente, au plus chaque individu va se déplacer dans l'espace des charges et les fréquences d'occupation des états s'uniformiseront sur la population.\\
+Nous nous intéressons donc à la dépendance en $\tau$ de cette grandeur. Nous illustrons dans un premier temps cette dépendance en observant la variation de l'écart-type pour 3 valeurs de $\tau: 500, 1000$ et $5000$. On porte donc en graphique l'écart à la distribution moyenne (i.e. stationnaire) dans l'espace des charges pour 2 lois différentes (constante et vague), voir figures \ref{ergo_cste} et \ref{ergo_vague}. Comme attendu l'écart-type diminue quand $\tau$ augmente; en effet, au plus le nombre d'interactions augmente, au plus chaque individu va se déplacer dans l'espace des charges, et les fréquences d'occupation des états s'uniformiseront sur la population.\\
 
 
 
@@ -271,13 +281,34 @@ Nous pouvons mesurer précisément la dépendance de $\sigma_{\tau}(i)$ en $\tau
 \label{moySTD}
 \end{equation}
 
-Les résultats sont repris aux figures \ref{ergo_cste}, \ref{ergo_lineaire},\ref{ergo_anti} et \ref{ergo_vague}.
+Les résultats sont repris aux figures \ref{ergo_cste_STD}, \ref{ergo_lineaire_STD}, \ref{ergo_anti_STD} et \ref{ergo_vague_STD}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.35]{Figures/Homogene/crop_STDvsTau_cste.pdf}
-\caption{Évolution de l'écart-type moyen en fonction du nombre d'échanges (équation \ref{moySTD}). Paramètres: Loi constante, $100$ individus, $\Delta l = 1\%$}
-\label{ergo_cste}
+\caption{Évolution de l'écart-type moyen en fonction du nombre d'échanges (équation \ref{moySTD}). Paramètres: Loi constante, $100$ individus, $n=100$.}
+\label{ergo_cste_STD}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_STDvsTau_lineaire.pdf}
+\caption{Évolution de l'écart-type moyen en fonction du nombre d'échanges (équation \ref{moySTD}). Paramètres: Loi linéaire, $100$ individus, $n=100$.}
+\label{ergo_lineaire_STD}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_STDvsTau_anti.pdf}
+\caption{Évolution de l'écart-type moyen en fonction du nombre d'échanges (équation \ref{moySTD}). Paramètres: Loi antilinéaire, $100$ individus, $n=100$.}
+\label{ergo_anti_STD}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{Figures/Homogene/crop_STDvsTau_vague.pdf}
+\caption{Évolution de l'écart-type moyen en fonction du nombre d'échanges (équation \ref{moySTD}). Paramètres: Loi vague, $100$ individus, $n=100$.}
+\label{ergo_vague_STD}
 \end{figure}
 
 A discuter. \fixme 
@@ -288,7 +319,7 @@ Malheureusement l'étude de ces courbes ne nous permet pas de les caractériser 
 
 Nous nous sommes jusqu'ici concentrés sur la dynamique d'équilibre, retrouvant la distribution de population stationnaire ou caractérisant le temps de passage d'un état riche à un état pauvre. Dans cette section nous nous intéressons à la dynamique hors équilibre, en particulier on cherchera à déterminer un temps caractéristique d'arrivée à l'équilibre.\\
 
-Bien que nous ayons montré que les distributions stationnaires sont indépendantes des conditions initiales (i.e. de la répartition de la nourriture au sein du groupe), rien ne dit qu'il en est de même pour la vitesse d'arrivée à cette distribution. Dès lors nous nous intéressons à l'évolution des distributions de population pour différentes répartitions initiales d'une même quantité de nourriture.\\
+Bien que nous ayons montré que les distributions stationnaires sont indépendantes des conditions initiales (i.e. de la répartition de la nourriture au sein du groupe), rien ne dit qu'il en soit de même pour la vitesse d'arrivée à cette distribution. Dès lors nous nous intéressons à l'évolution des distributions de population pour différentes répartitions initiales d'une même quantité de nourriture.\\
 
 Afin de quantifier l'état d'une population et d'étudier son évolution temporelle, nous reprenons le second moment de la distribution, présenté 2 sections plus haut (équation \ref{moment2}). Nous comparons donc l'évolution de ce second moment en fonction du temps pour 6 conditions initiales différentes. 
 
