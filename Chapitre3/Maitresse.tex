@@ -4,7 +4,7 @@
 
 \section{Discrétisation}
 
-Nous allons commencer par proposer un modèle discret dans l'espace des charges et dans le temps décrivant la dynamique d'échange. Une limite vers le continu sera proposée dans le cadre du modèle linéaire.\\
+Nous commençons par proposer un modèle discret dans l'espace des charges et dans le temps décrivant la dynamique d'échange. Une limite vers le continu sera proposée dans le cadre du modèle linéaire.\\
 
 En imposant une discrétisation de la charge, toute quantité devient un multiple d'une charge élémentaire $\Delta l$, l'ensemble des états occupables par une fourmi dans l'espace des charges est donc donné par $i*\Delta l$ où $i$ est un entier qui varie entre $0$ et $n$, $n$ vérifiant $n.\Delta l = 1$. Par la suite, nous noterons les états par leur indice; une fourmi dite dans l'état $j$ correspond à une fourmi transportant une quantité $j* \Delta l$.\\
 
@@ -15,7 +15,6 @@ En imposant une discrétisation de la charge, toute quantité devient un multipl
 \label{discretisation}
 \end{figure}
 
-Nous choisissons également de discrétiser le temps en intervalles $\Delta t$, de sorte que chaque fourmi tente un échange avec une congénère par pas de temps. Il sera alors facile pour l'expérimentateur de relier l'échelle de temps du modèle au temps réel en mesurant la fréquence des trophallaxies.\\
 
 Le modèle présenté ici décrit la dynamique dans l'espace des charges générée par des échanges d'une gouttelette $\Delta l$ entre les individus à chaque pas de temps. La grandeur considérée sera donc $X(i,t)$: le nombre d'individus dans l'état $i$ au temps $t$, normalisée de sorte que:
 
@@ -32,15 +31,13 @@ Q_{tot}= \sum_i i X(i,t)\\
 \section{Taux de transition}
 %Suite à une interaction,
 %\footnote{Attention à l'ambiguïté entre les termes "interaction" et "échange". On parle d'interaction quand 2 individus se rencontrent et choisissent ou non d'échanger de la nourriture. On parle d'échange s'ils ont choisit d'échanger.}
-Une fourmi dans l'état $j$ occupera au pas de temps suivant l'état:
+Une fourmi dans l'état $j$ occupera après interaction avec une congénère l'état:
 \begin{itemize}
 \item[$\bullet$] $j-1$, si elle a donné
 \item[$\bullet$] $j+1$, si elle a reçu
 \item[$\bullet$] $j$, s'il n'y a pas eu d'échange.
 \end{itemize}
-Les autres états étant inaccessibles en un seul échange.\\
-
-Seules les transitions entre états voisins sont donc possibles entre 2 pas de temps. On note $W(i|j,t)$ la probabilité qu'un individu dans l'état $j$ au temps $t$ atteigne l'état $i$ au temps $t+1$, on trouve alors:
+Les autres états étant inaccessibles en un seul échange.Seules les transitions entre états voisins sont donc possibles entre 2 interactions. On note $W(i|j,t)$ la probabilité qu'un individu dans l'état $j$ au temps $t$ atteigne l'état $i$ au temps $t+1$, on trouve alors:
 
 
 \begin{equation}
@@ -100,7 +97,7 @@ d'où
 \end{equation}
 pour $i = 1,...,n-1$.\\
 
-On fera attention aux bords:
+On fera attention aux bords $(i=0, i=n)$:
 \begin{equation}
 \begin{aligned}
 \dot{X}(0,t) 	&= W(0|1) X(1,t) - W(1|0) X(0,t)\\
@@ -134,16 +131,16 @@ $i=0$:
 \end{aligned}
 \end{equation}
 
-$i=N$:
+$i=n$:
 \begin{equation}
 \begin{aligned}
-0 &= W(N|N-1) X(N-1) - W(N-1|N) X(N)\\
-  &= \Sigma_D P_R(N-1)X(N-1)- \Sigma_R P_D(N) X(N)\\
+0 &= W(n|n-1) X(n-1) - W(n-1|n) X(n)\\
+  &= \Sigma_D P_R(n-1)X(n-1)- \Sigma_R P_D(n) X(n)\\
  \label{statio_N}
 \end{aligned}
 \end{equation}
 
-$i=1,...,N-1$:
+$i=1,...,n-1$:
 \begin{equation}
 \begin{aligned}
 0 =& \Sigma_R P_D(i+1) X(i+1)+ \Sigma_D P_R(i-1) X(i-1)\\ 
@@ -152,7 +149,7 @@ $i=1,...,N-1$:
 \end{aligned}
 \end{equation}
 
-On peut alors résoudre ces équations "en cascade" et exprimer les X(i) ($i=1,...,N$) en fonction de X(0).\\
+On peut alors résoudre ces équations "en cascade" et exprimer les X(i) ($i=1,...,n$) en fonction de X(0).\\
 Avec l'équation \ref{statio_1}, on trouve facilement l'expression de X(1):
 
 \begin{equation}
@@ -198,7 +195,7 @@ Ceci dit nous avons imposé la conservation du nombre d'individus et de la charg
 		\end{equation}
 \end{itemize}
 
-Nous arrivons donc à un système complet d'équations, qui nous permet d'exprimer univoquement la distribution $X(i)$. Ce résultat est fort, nous venons de montrer qu'en fixant la quantité de nourriture disponible et le nombre d'individus nous connaissons la distribution stationnaire de population dans l'espace des charges; ce qui signifie que l'état stationnaire est indépendant de la manière dont la nourriture est initialement répartie au sein de la population (i.e. des conditions initiales).\\
+Nous arrivons donc à un système complet d'équations, qui nous permet d'exprimer univoquement la distribution $X(i)$. \\
 
 
 Pour aller plus loin dans le calcul exact des distributions d'équilibre il est nécessaire de connaître explicitement les valeurs de $P_R$ et $P_D$. Nous l'effectuerons pour chacune des 4 lois étudiées.
@@ -267,14 +264,14 @@ Cette relation est très délicate à inverser, néanmoins nous pouvons obtenir 
 \label{AlphavsQCste}
 \end{figure}
 
-A quantité de nourriture fixée, le coefficient $\alpha$ est univoquement déterminé. Une première interprétation de ce graphique est que la distribution croit exponentiellement avec la charge pour une quantité de nourriture supérieure à $50\%$ de la capacité de la population et décroit pour une quantité inférieure à $50\%$.
+A quantité de nourriture fixée, le coefficient $\alpha$ est univoquement déterminé. Une première interprétation de ce graphique est que la distribution de $X_i$ croit exponentiellement avec la charge pour une quantité de nourriture supérieure à $50\%$ de la capacité de la population et décroit pour une quantité inférieure à $50\%$.
 
 
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.3]{Figures/Maitresse/Loi_cste.pdf}
-\caption{Distribution stationnaire normalisée de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``constant''. Les quantités de nourriture correspondent à $10, 25, 35, 50, 65, 75\%$ de la capacité maximale de stock de la colonie. $N=10000; n=100$}
+\includegraphics[scale=0.4]{Figures/Maitresse/Loi_cste.pdf}
+\caption{Distribution stationnaire normalisée de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``constant''. Les quantités de nourriture correspondent à $10, 25, 35, 50, 65, 75\%$ de la capacité maximale de stock de la colonie. $n=100$}
 \label{DistribAnalytiqueCste}
 \end{figure}
 
@@ -320,8 +317,8 @@ Du coup:
 \begin{equation}
 \begin{aligned}
 X_i &= X_0 \alpha^i \binom{n}{i}\\
-	&= \frac{X_{tot}}{(1+\alpha)^n}\alpha^i \binom{n}{i}\\
-	&= X_{tot}\frac{1}{(1+\alpha)^{n-i}}\frac{\alpha^i}{(1+\alpha)^i}\binom{n}{i}
+	&= \frac{\alpha^i}{(1+\alpha)^n} \binom{n}{i}\\
+	&= \frac{1}{(1+\alpha)^{n-i}}\frac{\alpha^i}{(1+\alpha)^i}\binom{n}{i}
 \end{aligned}
 \end{equation}
 
@@ -352,12 +349,12 @@ La distribution de population dans l'espace des charges est donc une gaussienne 
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.3]{Figures/Maitresse/Loi_lineaire.pdf}
-\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``linéaire''. $N=10000; n=100$}
+\includegraphics[scale=0.4]{Figures/Maitresse/Loi_lineaire.pdf}
+\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``linéaire''. $n=100$}
 \label{DistribAnalytiqueLin}
 \end{figure}
 
-On observe une concentration de la population autour d'une charge critique qui est la charge moyenne par individu.
+On observe une concentration de la population autour de la charge moyenne par individu.
 
 
 
@@ -396,8 +393,8 @@ La complexité analytique de cette distribution nous empêche d'aller très loin
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.3]{Figures/Maitresse/Loi_antilineaire.pdf}
-\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``antilinéaire''. $N=10000, n=100$}
+\includegraphics[scale=0.4]{Figures/Maitresse/Loi_antilineaire.pdf}
+\caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``antilinéaire''. $n=100$}
 \label{DistribAnalytiqueAnti}
 \end{figure}
 
@@ -423,9 +420,9 @@ La distribution de l'état stationnaire donnée par l'équation \ref{expression_
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.3]{Figures/Maitresse/Loi_vague.pdf}
+\includegraphics[scale=0.4]{Figures/Maitresse/Loi_vague.pdf}
 \caption{Distribution stationnaire de la population dans l'espace des charges pour 6 quantités de nourriture différentes, dans le cadre du modèle ``vague''. $N=10000; n=100$}
 \label{DistribAnalytiqueVague}
 \end{figure}
 
-On observe à nouveau une distribution bimodale pour de faibles quantités de nourriture, et donc à nouveau une séparation des rôles engendrée par la dynamique d'échange. Pour de plus grandes quantité de nourriture la bimodalité est abandonnée, la distribution se concentre autour de la charge moyenne par individu.
+On observe à nouveau une distribution bimodale pour de faibles quantités de nourriture, et donc à nouveau une séparation des rôles engendrée par la dynamique d'échange. Pour de plus grandes quantité de nourriture la bimodalité disparaît et la distribution se concentre autour de la charge moyenne par individu.

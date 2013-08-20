@@ -1,6 +1,16 @@
 \chapter{Conclusion}
 
 \section{Résultats et discussions}
+
+%La compréhension de l'organisation d'une fourmilière intéresse la communauté scientifique depuis plusieurs décennies.
+Au cours de ce mémoire nous avons construit un nouveau modèle décrivant la dynamique de distribution de nourriture au sein d'une fourmilière. Ce sont les interactions sociales entre les individus qui sont à l'origine de la dynamique à l'échelle de la population; le point centrale de la modélisation est donc consacré à l'influence des comportements individuels sur la répartition globale de la nourriture. \\
+
+Afin d'exploiter ce modèle nous avons utilisé des outils classiques issus de la mécanique statistique, ou plus exactement de l'étude des processus stochastiques, comme l'équation maîtresse présentée au chapitre 3 ou encore les simulations stochastiques d'échange entre les individus aux chapitres 4 et 5. \\
+
+Par manque de données expérimentales quantitatives, nous avons choisi d'étudier en particulier 4 lois comportementales simples, compatibles avec les comportements supposés des fourmis et qualitativement différentes. Pour chaque loi nous avons pu caractériser la répartition des stocks de nourriture dans la colonie une fois l'état stationnaire atteint, ce qui correspond en pratique à des temps de l'ordre de quelques minutes, voir de l'heure. Nous avons montré que la distribution de nourriture est alors particulièrement sensible au comportement des individus: dans certain cas la dynamique d'échange entraîne une séparation des rôles entre les domestiques, on remarque par exemple que certaines serviront de ``dépôt'' chez lesquels les autres viendront ``se vider''. Cette séparation des rôles s'observe entre autre dans le cas d'une population parfaitement homogène, ce qui contredit l'hypothèse que le rôle d'un individu au sein d'une fourmilière est déterminé par ses caractéristiques intrinsèques (i.e. morphologiques).
+
+Certains comportements individuels 
+
 1. On a construit un nouveau modèle décrivant la dynamique d'échange au sein d'une fourmilière, mettant en évidence l'influence du comportement individuel sur l'organisation générale de la population.
 2. On a utilisé des outils classiques de mécanique statistique et des simulations stochastiques pour étudier quantitativement ce modèle.
 3. On a pu caractériser la répartition des stocks de nourriture à l'échelle de la population pour différentes lois comportementales de l'individu.
@@ -15,17 +25,13 @@
 Comment vérifier le modèle, à discuter avec JL.
 
 \section{Perspectives du travail et applications}
-A moyen terme:
-Plusieurs hypothèses ont été faites dans le cadre de ce travail
-- $P_R(l) + P_D(l) =1$? => discontinuité aux bords
-- des échanges de plus d'une gouttelette
 
-- paramétriser les lois comportementales
+Ce mémoire s'ouvre à de nombreuses perspectives d'enrichissement du modèle proposé. Par définition, aucun modèle n'est exacte et bon nombre d'hypothèses qui ont été formulées peuvent faire l'objet d'une discussion. En particulier, on peut s'intéresser à celle formulée par l'équation \ref{PRPD1}, obligeant un individu à se placer comme receveur ou (exclusif!) donneur durant un échange. Cette hypothèse interdit l'indifférence chez les individus, elle implique par exemple qu'une fourmis pleine tentera toujours de donner de la nourriture puisqu'elle ne peut en recevoir, chose discutable! Reconsidérer cette hypothèse permettrait éventuellement de s'affranchir des discontinuités observées aux bords de certaines distributions.\\
+Nous avons aussi modélisé des échanges d'une quantité fixe de nourriture au cours des trophallaxies. Ce choix arbitraire ne s'appuie sur aucune mesure expérimentale, une amélioration du modèle serait donc de redéfinir la quantité échangée, sur base de données expérimentales, et d'étudier l'impact de cette modification sur la répartition globale de la nourriture.\\
 
-A long terme:
-- étudier une dynamique spatiale
-- coupler ce modèle à un modèle de stockage et de récolte
+A plus long terme, il serait intéressant de tenir compte d'une dynamique spatiale où les individus se déplacent et ne peuvent échanger qu'à la condition d'être suffisamment proche l'un de l'autre. En plus d'ajouter une contrainte ``naturelle'' au modèle qui pourrait à elle seule modifier la dynamique de répartition de la nourriture au sein de la population, cette considération permettrait également d'étudier la distribution spatiale de la nourriture. Il s'avère que des études expérimentales ont déjà été menées en ce sens \citep{buffin_feeding_2009}, une comparaison entre ces résultats et les prévisions du modèle permettrait éventuellement de confirmer ce dernier.\\
 
-Utilisation du modèle pour d'autres applications:
-- Multi-robots (Projet SYMBRION)
-- Economie (Lopez)
+Enfin, pour construire un modèle général décrivant complètement la dynamique de gestion de la nourriture au sein d'une fourmilière, il est nécessaire de coupler ce travail avec un modèle de récolte de nourriture. Les enjeux biologiques sont alors différents: processus de recrutement, de recherche de nourriture, pas de trophallaxies, etc. Un tel modèle serait donc à construire depuis 0, comme nous l'avons fait pour la dynamique d'échange. Néanmoins un tel travail a déjà été effectué par des physiciens \citep{} William \fixme et le couplage avec notre modèle ne semble pas présenter de difficultés majeures. De bonne augure...\\
+
+
+Outre l'étude de la gestion de nourriture dans une fourmilière, le modèle présenté dans ce mémoire trouvera son intérêt à de multiples applications, parfois très éloignées de la biologie théorique. En économie par exemple des modèles étudient les échanges d'argent entre traders, considérant $N$ individus ``tradant'', dans un circuit fermé, une certaine somme d'argent fixée \citep{} Lopez \fixme. On comprend immédiatement le lien avec notre travail, où $N$ fourmis s'échangent une quantité fixe de nourriture. Ceci dit quelques différences persisteront toujours entre les fourmis et la société humaine, les premières étant limitées par la quantité transportable alors qu'un ``bon'' trader pourra posséder la totalité des biens disponibles. En robotique, on pourra citer le projet européen SYMBRION (Ref?? \fixme) qui consiste à faire échanger de la matière et/ou de l'énergie entre des petits robots dans un but préalablement définit: déblayer un terrain, explorer un milieu inconnu, transporter de l'énergie d'un point A à un point B, etc. Notre modèle pourrait servir à déterminer les conditions sous lesquels 2 robots échangeront, i.e. les lois comportementales, pour optimiser leur rendement.

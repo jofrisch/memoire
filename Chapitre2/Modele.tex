@@ -2,35 +2,41 @@
 
 On cherche ici à construire un modèle décrivant la dynamique d'échange au sein d'une fourmilière, dont les enjeux biologiques ont été présentés au chapitre précédent. Ce modèle se base principalement sur des paramètres physiques mesurables et des lois statistiques de comportement individuel. \\
 
-Le manque d'études expérimentales sur le comportement des fourmis au cours des échanges nous oblige à partir à l'aveugle. Nous choisissons donc sans a priori de généraliser notre modèle à l'ensemble des comportements possibles.\\
+Le manque d'études expérimentales quantitatives sur le comportement des fourmis au cours des échanges nous oblige à partir à l'aveugle. Nous choisissons donc sans a priori de généraliser notre modèle à l'ensemble des comportements possibles.\\
 
 Néanmoins, la démarche d'utilisation du modèle pourrait permettre des considérations plus précises une fois de nouvelles données expérimentales obtenues. Une proposition d'un nouveau protocole expérimental sera d'ailleurs donnée dans la conclusion.
 
 
 \section{Hypothèses et justifications}
-Nous dressons ici la liste des hypothèses faites lors de la construction du modèle. Nous motivons le choix des hypothèses soit sur base d'arguments biologiques, soit dans le but de simplifier le modèle pour éviter une analyse démesurée de l'espace des paramètres.\\
+Nous dressons ici la liste des hypothèses faites lors de la construction du modèle. Nous motivons le choix des hypothèses soit sur base d'arguments biologiques, soit dans le but de simplifier le modèle pour éviter l'analyse d'un espace des paramètres démesuré.\\
 
 Pour rappel, la dynamique d'échange remplit deux fonctions au sein du nid: acheminer la nourriture récoltée chez les individus stockeurs et redistribuer cette nourriture stockée dans la population. \\
 
-Cette dynamique est relevante sur un temps caractéristique de l'ordre de la minute ou de l'heure, nettement inférieur à l'espérance de vie d'une ouvrière\footnote{Une ouvrière pouvant vivre plusieurs années. (ref \fixme)}; on peut donc négliger l'évolution démographique de la colonie et considérer \textbf{un nombre d'individus $N$ constant}.\\
+Cette dynamique est relevante sur un temps caractéristique de l'ordre de la minute ou de l'heure, nettement inférieur à l'espérance de vie d'une ouvrière pouvant vivre plusieurs années \citep{holldobler_ants_1990}; on peut donc négliger l'évolution démographique de la colonie et considérer \textbf{un nombre d'individus $N$ constant}.\\
 
 De même, la variation des stocks de nourriture par consommation de la population n'est conséquente que sur des temps de l'ordre de la journée, et comme nous considérons la dynamique d'échange entre deux arrivages de nourriture, on peut négliger la consommation ainsi que l'arrivée de nourriture et supposer \textbf{une quantité de nourriture $Q$ invariante} répartie dans la colonie.\\
 
 
-A l'échelle de l'individu divers paramètres peuvent intervenir, certains sont intrinsèques (volume de nourriture transporté, âge, taille, capacité maximale de nourriture transportée,...) d'autres dépendent du comportement de la fourmi (vitesse de déplacement, rôle au sein de la fourmilière,...). Nous choisissons de ne considérer que le volume de nourriture transportée et la capacité maximale de transport, les autres paramètres seront soit négligés, soit affectés d'une valeur moyenne.\\
+Divers paramètres peuvent influencer les comportements d'échange et de stockage d'un individu : son âge, sa taille, sa spécialisation, sa capacité maximale de nourriture transportée, ou encore la qualité de la nourriture échangée \citep{buffin_trophallaxis_2010}. Dans cette étude, nous considérerons qu'uniquement le volume transporté et la capacité maximale de transport influencent ces comportements. Les autres paramètres et grandeurs caractérisant les fourmis sont négligés ou plus exactement considérés égaux pour la totalité des individus.\\ 
 
-Nous négligeons l'impact de la qualité de la nourriture\footnote{Cette hypothèse est contestable (ref? exemple de gestions différentes selon la nourriture. Aurélie?) mais suffisante pour décrire la dynamique autour d'une certaine denrée. Par exemple: la gestion du sucre au sein de la colonie.} et supposons qu'une fourmi n'a aucune information sur les caractéristiques des individus avec lesquels elle interagit. Pour prendre une décision, une fourmi ne dispose donc que de 2 informations: son stock interne et sa capacité de stockage.\\
+De plus nous supposons que la fourmi n'a aucune information sur les caractéristiques des individus avec lesquels elle interagit et nous négligerons la composante spatiale, c'est à dire que les individus peuvent interagir indépendamment de leur position. Nous discuterons de l'intérêt d'implémenter la dynamique spatiale dans les perspectives de ce travail exposées au dernier chapitre.
 
-Enfin, ce travail ne considère pas de composante spatiale, c'est à dire que les individus pourront interagir indépendamment de leur position. Nous discuterons de l'intérêt d'implémenter une telle dynamique dans les perspectives de ce travail présentées au dernier chapitre.
+
+%
+%A l'échelle de l'individu divers paramètres peuvent intervenir, certains sont intrinsèques (âge, taille, capacité maximale de nourriture transportée,...) d'autres dépendent du comportement de la fourmi (vitesse de déplacement, rôle au sein de la fourmilière,...). Nous choisissons de ne considérer que le volume de nourriture transportée et la capacité maximale de transport, les autres paramètres seront soit négligés, soit affectés d'une valeur moyenne.\\
+%
+%Nous négligeons l'impact de la qualité de la nourriture, cette hypothèse est contestable \citep{} mais suffisante pour décrire la dynamique autour d'une certaine denrée, comme la gestion du sucre au sein de la colonie. Nous supposons qu'une fourmi n'a aucune information sur les caractéristiques des individus avec lesquels elle interagit. Pour prendre une décision, une fourmi ne dispose donc que de 2 informations: son stock interne et sa capacité de stockage.\\
+%
+%Enfin, ce travail ne considère pas de composante spatiale, c'est à dire que les individus pourront interagir indépendamment de leur position. Nous discuterons de l'intérêt d'implémenter une telle dynamique dans les perspectives de ce travail présentées au dernier chapitre.
 
 
 \section{La distribution de population dans l'espace des charges}
 
 On introduit ici les grandeurs nécessaires pour décrire la répartition des stocks de nourriture au sein de la colonie.\\
 
-Nous considérons une population constante de $N$ fourmis, partageant un stock de nourriture $Q$ (exprimé en unité de volume) invariant. Chaque individu transporte une certaine quantité de nourriture  et va fréquemment en échanger avec ses condisciples. \\
+Nous considérons une population constante de $N$ fourmis, partageant un stock de nourriture $Q$ (exprimé en unité de volume) invariant. Chaque individu transporte une certaine quantité de nourriture  et va fréquemment en échanger avec ses congénères. \\
 
-Dans un premier temps nous considérons chaque individu morphologiquement identique, bien qu'il sera intéressant par la suite de considérer une distribution des paramètres sur la population (en particulier, la capacité de transport). Les individus ne peuvent alors être différenciés que par la charge qu'ils transportent.\\
+Dans un premier temps nous considérons des individus morphologiquement identiques, bien qu'il sera intéressant par la suite de considérer une distribution des paramètres sur la population (en particulier la capacité de transport, voir Chapitre 5). Les individus ne peuvent être différenciés que par la charge qu'ils transportent.\\
 
 L'unité de charge transportée correspond à une unité de volume, chaque fourmi pouvant transporter un volume $V\in[0,V_{max}]$ où $V_{max}$ est alors le volume de son jabot social. On considère généralement la charge $l=\frac{V}{V_{max}}$, dès lors $l\in[0,1]$.\\
 
@@ -62,7 +68,7 @@ Dès lors, la conservation du nombre d'individus et de la charge totale donne le
 \label{ConservationQtot}
 \end{equation}
 
-\section{Mecanisme d'échange}
+\section{Mécanisme d'échange}
 
 \textit{On s'intéresse ici aux échanges de charge au cours d'une interaction entre 2 individus.}\\
 
@@ -95,12 +101,12 @@ P_{\text{rien ne se passe}} &= 1- P_{A \rightarrow B} - P_{B \rightarrow A}\\
 \label{ProbaRien}
 \end{equation}
 
-Le dernier terme de l'équation (\ref{ProbaRien}) exprime la probabilité que les 2 individus soient tous les 2 receveurs ou tous les 2 donneurs, auxquels cas aucun échange n'a lieu.\\
+Le dernier terme de l'équation (\ref{ProbaRien}) exprime la probabilité que les 2 individus soient tous les 2 receveurs ou tous les 2 donneurs, dans ces cas aucun échange n'a lieu.\\
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{Figures/Modele/prise_de_decision.pdf}
-\caption{Processus d'échange. Les individus se déplacent au sein du nid, à chaque rencontre ils choisissent d'être receveur ou donneur. Si leur choix sont compatibles (càd si l'un est donneur et l'autre receveur) l'échange à lieu, sinon le couple se sépare.}
+\caption{Processus d'échange. Les individus se déplacent au sein du nid, à chaque rencontre ils choisissent d'être receveur ou donneur. Si leur choix sont compatibles (càd si l'un est donneur et l'autre receveur) l'échange à lieu, sinon le couple se sépare sans aucun échange.}
 \label{echanges}
 \end{figure}
 
@@ -112,7 +118,7 @@ P_R(l)+P_D(l) = 1
 \end{equation}
 pour toutes charges $l\in[0,1]$.\\
 
-La connaissance explicite de ces 2 fonctions nous permettrait de caractériser avec précision la dynamique d'échange, malheureusement l'absence de résultats expérimentaux nous oblige à partir à l'aveugle. Les seules informations indéniables que nous avons sont les conditions aux bords:
+La connaissance explicite de ces 2 fonctions nous permettrait de caractériser avec précision la dynamique d'échange, malheureusement l'absence de résultats expérimentaux nous oblige à rester général. Les seules informations indéniables que nous avons sont les conditions aux bords:
 
 \begin{equation}
 \left \{
@@ -137,12 +143,12 @@ En effet, un individu chargé au maximum ne peut être que donneur et inversemen
 
 On comprend que la dynamique de la distribution de population est dictée par la valeur des fonctions $P_R$ et $P_D$. Nous avons jusqu'ici considéré ces lois de manière générale, c'est d'ailleurs l'intérêt du travail de construire un modèle valable pour toute loi de comportement individuel, ceci afin d'étudier l'influence de ces comportements sur la distribution de nourriture dans la colonie.\\
 
-Malheureusement il est impossible en pratique d'étudier toutes les lois d'échange imaginables, nous devons donc faire des choix. Dans cette étude du modèle nous choisissons de nous intéresser à 4 lois bio-inspirées\footnote{JL: a-t-on des exemples sous la main pour ces 4 lois?} représentant des comportements biologiques fondamentalement différents, ceci dans l'espoir de mettre en évidence des liens entre le caractère des lois et leurs conséquences sur la dynamique d'échange (par ex. apparition de sous-populations riches et pauvres, concentration de la population autour d'une certaine charge,...). Dans les perspectives du projet, présentées au dernier chapitre, nous discuterons de la possibilité de paramétriser ces lois et de l'intérêt d'étudier la dynamique du système en fonction des paramètres introduits.\\
+Malheureusement il est impossible en pratique d'étudier toutes les lois d'échange imaginables, nous devons donc faire des choix. Dans cette étude du modèle nous choisissons de nous intéresser à 4 lois, compatibles avec les échanges supposés entre les individus, représentant des comportements biologiques fondamentalement différents. Ceci dans l'espoir de mettre en évidence des liens entre le caractère des lois et leurs conséquences sur la dynamique d'échange (par ex. apparition de sous-populations riches et pauvres, concentration de la population autour d'une certaine charge,...). Dans le dernier chapitre, nous discuterons de la possibilité de paramétriser ces lois et de l'intérêt d'étudier la dynamique du système en fonction des paramètres introduits.\\
 
 
 \subsection{La loi constante}
 
-La première loi étudiée est une loi dite constante, où les fourmis reçoivent ou donnent leur nourriture indépendamment de la quantité transportée, à l'exception des conditions limites (\ref{ConditionsBordsProbabilite}). Les fonctions $P_R(l)$ et $P_D(l)$ sont donc constantes sur l'interval $]0,1[$ et vallent $\frac{1}{2}$:\\
+La première loi étudiée est une loi dite constante, où les fourmis reçoivent ou donnent leur nourriture indépendamment de la quantité transportée, à l'exception des conditions limites (\ref{ConditionsBordsProbabilite}). Les fonctions $P_R(l)$ et $P_D(l)$ sont donc constantes sur l'interval $]0,1[$ et valent $\frac{1}{2}$:\\
 
 \begin{equation}
 \left \{
@@ -154,7 +160,7 @@ P_D (l) &= \frac{1}{2}\\
 \label{PRCste}
 \end{equation}
 
-$l\in]0,1[$.
+pour $l\in]0,1[$ et les conditions aux bord \ref{ConditionsBordsProbabilite} pour $l=0, l=1$.
 
 \begin{figure}[h]
 \centering
@@ -164,7 +170,7 @@ $l\in]0,1[$.
 \end{figure}
 
 \subsection{La loi linéaire}
-Nous étudions ensuite une loi dite linéaire, où la probabilité d'être donneur est linéaire en la charge. Dans ce cas, les fourmis ont d'autant plus tendance à se charger qu'elles sont vides et inversement à se délester qu'elles sont remplies. Les fonctions $P_R(l)$ et $P_D(l)$ sont donc définies comme suit:
+Nous étudions ensuite une loi dite linéaire, où les probabilités d'être donneur ou receveur sont linéaires en la charge. Dans ce cas, les fourmis ont d'autant plus tendance à se charger qu'elles sont vides et inversement à se délester qu'elles sont remplies. Les fonctions $P_R(l)$ et $P_D(l)$ sont donc définies comme suit:
 \begin{equation}
 \left \{
 \begin{aligned}
@@ -186,7 +192,7 @@ $l\in[0,1]$. Les conditions aux bords \ref{ConditionsBordsProbabilite} sont auto
 
 
 \subsection{La loi antilinéaire}
-Nous étudions également une loi dite antilinéaire, qui représente la situation inverse de la loi linéaire, où cette fois la probabilité d'être receveur est linéaire en la charge. Dans ce cas, les fourmis ont d'autant plus tendance à se charger qu'elles sont remplies et à se délester qu'elles sont vides. Les fonctions $P_R(l)$ et $P_D(l)$ sont définies comme suit:
+Nous étudions également une loi dite antilinéaire, qui représente la situation opposée à la loi linéaire, où cette fois la probabilité d'être receveur (donneur) augmente (diminue) linéairement avec la charge transportée. Dans ce cas, les fourmis ont d'autant plus tendance à se charger qu'elles sont remplies et à se délester qu'elles sont vides. Les fonctions $P_R(l)$ et $P_D(l)$ sont définies comme suit:
 \begin{equation}
 \left \{
 \begin{aligned}
@@ -196,7 +202,7 @@ P_D (l) &= 1-l\\
 \right.
 \label{PRAnti}
 \end{equation}
-$l\in]0,1[$, avec les conditions aux bords \ref{ConditionsBordsProbabilite}.
+pour $l\in]0,1[$ et les conditions aux bord \ref{ConditionsBordsProbabilite} pour $l=0, l=1$.
 
 \begin{figure}[h]
 \centering
@@ -206,23 +212,25 @@ $l\in]0,1[$, avec les conditions aux bords \ref{ConditionsBordsProbabilite}.
 \end{figure}
 
 \subsection{La loi vague}
-Nous étudions enfin une loi dite vague, où cette fois les probabilités d'être receveur et donneur ne sont plus du premier degré en la charge. Cette loi propose 2 régimes différents, à forte charge les individus auront d'autant plus envie de se délester qu'ils sont chargés alors que l'inverse a lieu à faible charge. De plus, la probabilité de recevoir présente un minimum en dehors des bords, soit en $l=\frac{3}{8}$, qui correspond à une charge optimale pour donner de la nourriture. Les fonctions $P_R(l)$ et $P_D(l)$ sont définies comme suit:
+Nous étudions enfin une loi dite vague, où cette fois les probabilités d'être receveur et donneur sont du second degré en la charge. Cette loi propose 2 régimes différents, à forte charge les individus auront d'autant plus envie de se délester qu'ils sont chargés alors que l'inverse a lieu à faible charge. Ce qui correspond qualitativement à une combinaison des 2 lois précédentes. La probabilité de recevoir présente un minimum qui correspond à une charge optimale pour donner de la nourriture. Les fonctions $P_R(l)$ et $P_D(l)$ sont définies comme suit:
 \begin{equation}
 \left \{
 \begin{aligned}
-P_R (l) &= -2l^2+1.5l+0.5\\
-P_D (l) &= 2l^2-1.5l+0.5\\
+P_R (l) &= -al^2+bl+c\\
+P_D (l) &= al^2-bl+1-c\\
 \end{aligned}
 \right.
 \label{PRVague}
 \end{equation}
-$l\in]0,1[$, avec les conditions aux bords \ref{ConditionsBordsProbabilite}.
+pour $l\in]0,1[$ et les conditions aux bord \ref{ConditionsBordsProbabilite} pour $l=0, l=1$.\\
+
+$a, b, c$ sont choisis tels que $0\leq P_R(l), P_D(l) \leq 1$ pour $l\in]0,1[$ et $a>0$.\\
+
+Dans notre étude nous considérons toujours les valeurs suivantes: $a=2, b=1.5, c=0.5$.
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.3]{Figures/Modele/ProbaVague.pdf}
-\caption{Probabilité d'être receveur ou donneur en fonction de la charge transportée, dans le cadre d'une loi vague.}
+\caption{Probabilité d'être receveur ou donneur en fonction de la charge transportée, dans le cadre d'une loi vague de paramètres $a=2, b=1.5, c=0.5$.}
 \label{ProbaVague}
 \end{figure}
-
-(Penser à mettre des exemples bio pour chaque lois! \fixme)
