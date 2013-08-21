@@ -1,0 +1,176 @@
+
+\begin{algorithm}
+\caption{Simulations stochastiques synchrones d'une population homogène.}
+\begin{algorithmic}
+
+\State Nb$_{Simul} \gets 10000$
+\State Nb$_{Indiv} \gets 1000$\\
+
+
+\State $n \gets 100$
+\State $Q_{tot} \gets 50$\\
+
+\State ChargeUnit $\gets 1./n$\\
+
+\State TF $\gets$ Table[$Nb_{Indiv}$][$Nb_{Simul}$]
+\State \textcolor{blue}{On crée un tableau TF, t.q. TF[i][j] contient la charge de l'individu i au temps j.}\\
+\State TF $\gets$ InitialiseTF($Q_{tot}$)
+\State \textcolor{blue}{Initialise le tableau TF en distribuant la charge totale dans la population.}\\
+
+\For{tps $\gets 0, Nb_{Simul}$}
+	\State Indices $\gets$ shuffle(1,$Nb_{Indiv}$) 
+	\State \textcolor{blue}{Crée une liste contenant les entiers de 1 à $Nb_{Indiv}$ mélangés aléatoirement.}\\
+	\For{$i \gets 0, Nb_{Indiv}/2$}
+		\State k $\gets$ Indices[2i]
+		\State l $\gets$ Indices[2i+1] \\
+		
+		\State $x,y \gets random()$\\
+		
+		\State $l_1 \gets TF[k][tps]$
+		\State $l_2 \gets TF[l][tps]$\\
+		
+		\If{$x<P_R(l_1)$ , $y > P_R(l_2) $}
+			\State don $\gets$ ChargeUnit 
+		\ElsIf{$x>P_R(l_1)$ , $y < P_R(l_2) $}
+			\State don $\gets$ -ChargeUnit 
+		\Else
+			\State $don=0$
+		\EndIf \\
+		
+		\State $TF[k][tps+1] \gets TF[k][tps]+don$
+        \State $TF[l][tps+1] \gets TF[l][tps]-don$\\
+	\EndFor
+\EndFor
+
+
+
+\end{algorithmic}
+\end{algorithm}
+
+
+\clearpage
+
+\begin{algorithm}
+\caption{Simulations stochastiques asynchrones des échanges d'une population homogène.}
+\begin{algorithmic}
+
+%\Function{evolution}{a}
+%\State $a \gets a+1$
+%\EndFunction
+\State $Nb_{Simul} \gets 5 000 000$
+\State $Nb_{Indiv} \gets 1000$\\
+
+\State $n \gets 100$
+\State $Q_{tot} \gets 50$\\
+
+\State ChargeUnit $\gets 1./n$\\
+
+
+\State TF $\gets$ Table[$Nb_{Indiv}$][$Nb_{Simul}$]
+\State \textcolor{blue}{On crée un tableau TF, t.q. TF[i][j] contient la charge de l'individu i au temps j.}\\
+\State TF $\gets$ InitialiseTF($Q_{tot}$)
+\State \textcolor{blue}{Initialise le tableau TF en distribuant la charge totale dans la population.}\\
+
+\For{tps $\gets 0, Nb_{Simul}$}
+	
+	\State k $\gets random(Nb_{Indiv})$
+	\State l $\gets random(Nb_{Indiv})$
+	\While{k==l}
+		\State l $\gets random(Nb_{Indiv})$
+	\EndWhile
+	\State \textcolor{blue}{on assure $k \neq l$}\\
+		
+	\State $x,y \gets random()$\\
+		
+	\State $l_1 \gets TF[k][tps]$
+	\State $l_2 \gets TF[l][tps]$\\
+		
+	\If{$x<P_R(l_1)$ , $y > P_R(l_2) $}
+		\State don $\gets$ ChargeUnit 
+	\ElsIf{$x>P_R(l_1)$ , $y < P_R(l_2) $}
+		\State don $\gets$ -ChargeUnit 
+	\Else
+		\State $don=0$
+	\EndIf \\
+		
+	\State $TF[k][tps+1] \gets TF[k][tps]+don$
+    \State $TF[l][tps+1] \gets TF[l][tps]-don$\\
+\EndFor
+
+
+
+\end{algorithmic}
+\end{algorithm}
+
+
+Remarques:
+\begin{itemize}
+\item[$\bullet$]La quantité totale de nourriture dans la population notée $Q$ est définie par la charge moyenne des individus. Une quantité de nourriture $Q=25$ correspond à une charge moyenne par individu de 25 unités $\Delta l$.
+\item[$\bullet$]La fonction InitialiseTF distribue la quantité totale de nourriture $Q$ au sein de la population pour le premier pas de temps.
+\end{itemize}
+
+
+\pagebreak
+
+\begin{algorithm}
+\caption{Simulations stochastiques des échanges sur une population hétérogène.}
+\begin{algorithmic}
+
+%\Function{evolution}{a}
+%\State $a \gets a+1$
+%\EndFunction
+\State Nb$_{Simul} \gets 10000$
+\State Nb$_{Indiv} \gets 1000$\\
+
+\State n $\gets 100$
+\State $Q_{tot} \gets 50$\\
+
+\State ChargeUnit $\gets 1./n$\\
+
+
+\State TF $\gets$ Table[$Nb_{Indiv}$][$Nb_{Simul}$]
+\State \textcolor{blue}{On crée un tableau TF, t.q. TF[i][j] contient la charge de l'individu i au temps j.}\\
+\State TF $\gets$ InitialiseTF($Q_{tot}$)
+\State \textcolor{blue}{Initialise le tableau TF en distribuant la charge totale dans la population.}\\
+
+\For{tps $\gets 0, Nb_{Simul}$}
+	\State Indices $\gets$ shuffle(1,$Nb_{Indiv}$) 
+	\State \textcolor{blue}{Crée une liste contenant les entiers de 1 à $Nb_{Indiv}$ mélangés aléatoirement.}\\
+	\For{$i \gets 0, Nb_{Indiv}/2$}
+		\State k $\gets$ Indices[2i]
+		\State l $\gets$ Indices[2i+1] \\
+		
+		\State $x,y \gets random()$\\
+		
+		\State $l_1 \gets TF[k][tps]$
+		\State $l_2 \gets TF[l][tps]$\\
+		
+		\If{$x<P_R(l_1,capacite(k))$ , $y > P_R(l_2,capacite(l)) $}
+			\State don $\gets$ ChargeUnit 
+		\ElsIf{$x>P_R(l_1,capacite(k))$ , $y < P_R(l_2,capacite(k)) $}
+			\State don $\gets$ -ChargeUnit 
+		\Else
+			\State $don=0$
+		\EndIf \\
+		
+		\State $TF[k][tps+1] \gets TF[k][tps]+don$
+        \State $TF[l][tps+1] \gets TF[l][tps]-don$\\
+	\EndFor
+\EndFor
+
+
+
+\end{algorithmic}
+\end{algorithm}
+
+Remarques:
+\begin{itemize}
+\item[$\bullet$]La quantité totale de nourriture dans la population notée $Q$ est définie par la charge moyenne des individus. Une quantité de nourriture $Q=25$ correspond à une charge moyenne par individu de 25 unités $\Delta l$.
+\item[$\bullet$]Dans le tableau TF, les $\frac{N}{2}$ premiers individus sont considérés comme maigres, les $\frac{N}{2}$ suivants sont gros.
+\item[$\bullet$]La fonction InitialiseTF distribue la quantité totale de nourriture $Q$ au sein de la population pour le premier pas de temps.
+\item[$\bullet$]La fonction capacite(k) retourne $n$ si $0<k\leq\frac{N}{2}$, $2n$ si $\frac{N}{2}< k \leq N$ .
+\end{itemize}
+
+
+
+\pagebreak
