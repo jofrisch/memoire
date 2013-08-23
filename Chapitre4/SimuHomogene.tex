@@ -136,21 +136,21 @@ Une première observation est que la courbe $\mu_{\tau}(i)$ correspond à la dis
 
 La grandeur relevante ici est l'écart-type des fréquences d'occupation des états, pris sur la population. Cette grandeur caractérise la différence entre les individus, elle atteint 0 quand toutes les fourmis ont occupé chaque état avec la même fréquence et est d'autant plus grande que les fourmis ont tendance à ``stagner'' dans leur état.  \\
 
-Nous nous intéressons donc à la dépendance en $\tau$ de cette grandeur. Nous illustrons dans un premier temps cette dépendance en observant la variation de l'écart-type pour 3 valeurs de $\tau: 500, 1000$ et $5000$. On porte donc en graphique l'écart à la distribution moyenne (i.e. stationnaire) dans l'espace des charges pour 2 lois différentes (constante et vague), voir figures \ref{ergo_vague} et \ref{ergo_cste}. Comme attendu l'écart-type diminue quand $\tau$ augmente; en effet, au plus le nombre d'interactions augmente, au plus chaque individu va se déplacer dans l'espace des charges, et les fréquences d'occupation des états s'uniformiseront sur la population.\\
+Nous nous intéressons donc à la dépendance en $\tau$ de cette grandeur. Nous illustrons dans un premier temps cette dépendance en observant la variation de l'écart-type pour 3 valeurs de $\tau: 500, 1000$ et $5000$. On porte donc en graphique l'écart à la distribution moyenne (i.e. stationnaire) dans l'espace des charges pour 2 lois différentes (constante et vague), voir figures \ref{ergo_vague} et \ref{ergo_cste}. Comme attendu l'écart-type diminue quand $\tau$ augmente; en effet, au plus le nombre d'interactions augmente, au plus chaque individu va se déplacer dans l'espace des charges, et les fréquences d'occupation des états s'uniformiseront sur la population. On remarque aussi que contrairement à la loi constante, l'écart-type moyen de la loi vague reste élevé, ce qui montre que sur les temps considérés les individus ont tendance à stagner à proximité de leur état initial, ceci exprime la difficulté que rencontrent les individus peu chargé à ``rejoindre' la sous-population chargée.  \\
 
 
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.35]{Figures/Homogene/crop_ergo_vague.pdf}
-\caption{Représentation de $\mu_{\tau}$ et $\mu_{\tau}(i)\pm \sigma_{\tau}$ en fonction de la charge $i$. Paramètres: Loi vague, $Q=25$, $250$ individus, $n=100$.}
+\caption{Représentation de $\mu_{\tau}$ et $\mu_{\tau}\pm \sigma_{\tau}$ en fonction de la charge $i$. Paramètres: Loi vague, $Q=25$, $250$ individus, $n=100$.}
 \label{ergo_vague}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.25]{Figures/Homogene/crop_ergo_cste.pdf}
-\caption{Représentation de $\mu_{\tau}$ et $\mu_{\tau}(i)\pm \sigma_{\tau}$ en fonction de la charge $i$. Paramètres: Loi constante, $Q=25$, $250$ individus, $n=100$.}
+\caption{Représentation de $\mu_{\tau}$ et $\mu_{\tau}\pm \sigma_{\tau}$ en fonction de la charge $i$. Paramètres: Loi constante, $Q=25$, $250$ individus, $n=100$.}
 \label{ergo_cste}
 \end{figure}
 
@@ -171,7 +171,7 @@ Une première analyse de ces courbes montre qu'elles ne peuvent être approchée
 <\sigma>(\tau)=A exp(\frac{\tau}{\tau^*}) + \sum_k a_k \tau^k
 \end{equation}
 
-L'intérêt étant de pouvoir exprimer un temps caractéristique de décroissance de $<\sigma>(\tau)$ qui quantifierait le temps qu'une fourmis prend pour se déplacer dans l'espace des charges .\\
+L'intérêt étant alors de pouvoir exprimer un temps caractéristique de décroissance de $<\sigma>$ qui quantifierait le temps qu'une fourmis prend pour se déplacer dans l'espace des charges .\\
 
 \begin{figure}[h]
 \centering
@@ -204,11 +204,11 @@ L'intérêt étant de pouvoir exprimer un temps caractéristique de décroissanc
 \clearpage
 \section{Temps caractéristique d'arrivée à l'équilibre}
 
-Nous nous sommes jusqu'ici concentrés sur la dynamique d'équilibre, retrouvant la distribution de population stationnaire ou caractérisant le temps de passage d'un état riche à un état pauvre. Dans cette section nous nous intéressons à la dynamique hors équilibre, en particulier on cherchera à déterminer un temps caractéristique d'arrivée à l'équilibre.\\
+Nous nous sommes jusqu'ici concentrés sur la dynamique d'équilibre, retrouvant la distribution de population stationnaire ou cherchant à caractériser le temps de passage d'un état riche à un état pauvre. Dans cette section nous nous intéressons à la dynamique hors équilibre, en particulier on cherchera à déterminer un temps caractéristique d'arrivée à l'état d'équilibre.\\
 
 Bien que nous ayons montré que les distributions stationnaires sont indépendantes des conditions initiales (i.e. de la répartition de la nourriture au sein du groupe), rien ne dit qu'il en soit de même pour la vitesse d'arrivée à cette distribution. Dès lors nous nous intéressons à l'évolution des distributions de population pour différentes répartitions initiales d'une même quantité de nourriture.\\
 
-Afin de quantifier l'état d'une population et d'étudier son évolution temporelle, nous reprenons le second moment de la distribution, présenté 2 sections plus haut (équation \ref{moment2}). Nous comparons donc l'évolution de ce second moment en fonction du temps pour 6 conditions initiales différentes. 
+Afin de quantifier l'état d'une population et d'étudier son évolution temporelle, nous reprenons le second moment de la distribution (équation \ref{moment2}), déjà introduit à la section 4.1. Nous comparons donc l'évolution de ce second moment en fonction du temps pour 6 conditions initiales différentes. 
 
 \begin{equation}
 \begin{aligned}
@@ -218,7 +218,7 @@ Afin de quantifier l'état d'une population et d'étudier son évolution tempore
 \end{equation}
 
 
-Les résultats sont résumés ci-dessous. On observe une croissance exponentielle vers l'état stationnaire, on peut donc écrire $<l^2>(t)$ comme:
+Les résultats sont résumés ci-dessous. Une première analyse semble montrer une croissance exponentielle de $<l^2>$ vers sa valeur stationnaire, on peut donc écrire $<l^2>(t)$ comme:
 
 \begin{equation}
 \begin{aligned}
@@ -234,4 +234,4 @@ où
 \end{aligned}
 \end{equation}
 
-et $\tau$ est un temps caractéristique d'arrivée à l'équilibre.
+et $\tau$ est le temps caractéristique d'arrivée à l'équilibre. Ceci dit une analyse plus fine sera nécessaire pour déterminer dans chaque situation (loi et quantité de nourriture fixées) le temps caractéristique d'arrivée à l'équilibre qui dépend vraisemblablement de la condition initiale.
